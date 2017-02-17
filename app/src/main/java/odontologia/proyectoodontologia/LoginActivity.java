@@ -3,6 +3,7 @@ package odontologia.proyectoodontologia;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -92,6 +93,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        //Se crea el dialogo para recuperar la contraseña
+        final Dialog recoveryDialog = new Dialog(this);
+        recoveryDialog.setContentView(R.layout.dialog_recovery_layout);
+        TextView forgetPasswordTV = (TextView)findViewById(R.id.forget_passwordTV);
+        forgetPasswordTV.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recoveryDialog.show();
+            }
+        });
     }
 
     private void populateAutoComplete() {
