@@ -13,4 +13,55 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    
+    <string name="forget_password">Olvidé mi contraseña</string>
+    <string name="success_introduction">Email ingresado con exito</string>
+    <string name="password_recovery">Recuperación de Contraseña</string>
+    <string name="accept"> Aceptar</string>
+    <string name="title_activity_ficha_odontologica">FichaOdontologica</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="dental_tab">Ficha Odontológica</string>
+    <string name="surname">Primer Apellido</string>
+    <string name="second_surname">Segundo Apellido</string>
+    <string name="name">Nombre</string>
+    <string name="student_id">Carné</string>
+    <string name="major">Carrera</string>
+    <string name="civil_status">Estado Civil</string>
+    <string name="CCSS_id">Carné CCSS</string>
+    <string name="birth_date">Fecha de Nacimiento</string>
+    <string name="person_id">Cédula</string>
+    <string name="family_address">Dirección familiar</string>
+    <string name="phone">Teléfono</string>
+    <string name="check_afirmation_question">Marque si la respuesta es afirmativa</string>
+    <string name="check_afirmation_question_indication">Ha tenido:</string>
+    <string name="recent_physical_test">Examen físico reciente</string>
+    <string name="heart_diseases">Problemas Cardiácos</string>
+    <string name="low_blood_pressure">Presión arterial baja</string>
+    <string name="high_blood_pressure">Presión arterial alta</string>
+    <string name="circulatory_diseases">Problemas circulatorios</string>
+    <string name="pain_in_anditive_region">Dolor en región anditiva</string>
+    <string name="excessive_bleeding">Excesivo sangramiento</string>
+    <string name="bleeding_gums">Sangramiento de encías</string>
+    <string name="any_allergy">Alguna alergia</string>
+    <string name="allergy_antibiotics">Alergia antibióticos</string>
+    <string name="asthma">Asma</string>
+    <string name="hepatitis">Hepatitis</string>
+    <string name="nephrosis">Nefrosis</string>
+    <string name="rheumatic_fever">Fiebre reumática</string>
+    <string name="epilepsy">Epilepsia</string>
+    <string name="venereal_diseases">Enfermedades venéreas</string>
+    <string name="thyroid_gland_disorders">Alteraciones glándula tiroides</string>
+    <string name="others">Otras</string>
+    <string name="whitch">Indique:</string>
+
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+
 </resources>
