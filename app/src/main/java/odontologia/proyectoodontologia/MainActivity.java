@@ -12,25 +12,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("Manejo Citas");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -40,6 +40,57 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        loadSpinnerData();
+
+        //Click Listener el boton reservar
+        Button reserveBtn = (Button) findViewById(R.id.reserve_btn);
+        // Se crea el Toast de éxito
+        final Toast succesToast = Toast.makeText(this, R.string.succes_appointment,Toast.LENGTH_SHORT);
+        final Toast errorToast = Toast.makeText(this, R.string.error_appointment, Toast.LENGTH_SHORT);
+        reserveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(((Spinner) findViewById(R.id.appointment_day_spinner)).getSelectedItem() != null &&
+                        ((Spinner) findViewById(R.id.appointment_hour_spinner)).getSelectedItem() != null )
+                    succesToast.show();
+                else
+                    errorToast.show();
+            }
+        });
+
+    }
+
+    /**
+     * Metodo encargado de llenar los spinner con sus respectivos datos
+     * */
+    private void loadSpinnerData(){
+        //Spinner para el día
+        Spinner appointmentDaySpinner = (Spinner) findViewById(R.id.appointment_day_spinner);
+        appointmentDaySpinner.setPrompt("Dia");
+
+        ArrayList<String> spinnerArrayDay = new ArrayList<>();
+        spinnerArrayDay.add("Uno");
+        spinnerArrayDay.add("Dos");
+        spinnerArrayDay.add("Tres");
+        spinnerArrayDay.add("Cuatro");
+        spinnerArrayDay.add("Cinco");
+        ArrayAdapter<String> spinnerArrayAdapterDay =
+                new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerArrayDay);
+        appointmentDaySpinner.setAdapter(spinnerArrayAdapterDay);
+
+        //Spinner para la hora
+        Spinner appointmentHourSpinner = (Spinner) findViewById(R.id.appointment_hour_spinner);
+        appointmentHourSpinner.setPrompt("Hora");
+        ArrayList<String> spinnerArrayHour = new ArrayList<>();
+        spinnerArrayHour.add("1:00 pm");
+        spinnerArrayHour.add("2:00 pm");
+        spinnerArrayHour.add("3:00 pm");
+        spinnerArrayHour.add("4:00 pm");
+        spinnerArrayHour.add("4:40 pm");
+        spinnerArrayHour.add("5:00 pm");
+        ArrayAdapter<String> spinnerArrayAdapterHour =
+                new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerArrayHour);
+        appointmentHourSpinner.setAdapter(spinnerArrayAdapterHour);
     }
 
     @Override
