@@ -22,6 +22,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.*;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -108,7 +109,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         recoveryDialog.setContentView(R.layout.dialog_recovery_layout);
 
         //Se crea el textView necesario para poder abrir el dialog
-        TextView forgetPasswordTV = (TextView)findViewById(R.id.forget_passwordTV);
+        TextView forgetPasswordTV = (TextView) findViewById(R.id.forget_passwordTV);
         //se crea el OnClickListener necesario para abrir el dialogo
 //        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 //        final EditText emailEditTxt = new EditText(alertDialogBuilder.getContext());
@@ -129,7 +130,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 //                    }
 //                });
 //        final AlertDialog alertDialog = alertDialogBuilder.create();
-
+        LinearLayout layout = (LinearLayout) this.getLayoutInflater().inflate(R.layout.dialog_recovery_layout, null);
+        layout.getChildAt(0).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println(((EditText) v).getText());
+            }
+        });
         forgetPasswordTV.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,7 +145,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
 
     }
-
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
             return;

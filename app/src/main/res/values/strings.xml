@@ -3,6 +3,7 @@
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
+    <string name="email_backup"> Email para el respaldo</string>
     <string name="prompt_password">Contraseña</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Ingresar</string>
@@ -13,7 +14,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-
+    <string name="sign_up">Registrarse</string>
 
     <string name="forget_password">Olvidé mi contraseña</string>
     <string name="success_introduction">Email ingresado con exito</string>
