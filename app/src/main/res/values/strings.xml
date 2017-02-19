@@ -15,7 +15,7 @@
         completions."
     </string>
     <string name="sign_up">Registrarse</string>
-
+    <string name="back">Back</string>
     <string name="forget_password">Olvidé mi contraseña</string>
     <string name="success_introduction">Email ingresado con exito</string>
     <string name="password_recovery">Recuperación de Contraseña</string>
@@ -55,7 +55,7 @@
     <string name="epilepsy">Epilepsia</string>
     <string name="venereal_diseases">Enfermedades venéreas</string>
     <string name="thyroid_gland_disorders">Alteraciones glándula tiroides</string>
-    <string name="others">Otras</string>
+    <string name="others">Otras:</string>
     <string name="whitch">Indique:</string>
     <string name="succes_appointment">Cita reservada con éxito</string>
     <string name="error_appointment"> Seleccione el día y la hora</string>
@@ -64,6 +64,9 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

@@ -70,6 +70,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
     private Dialog recoveryDialog;
     private EditText editText;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +108,29 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         //Se crea el dialogo para recuperar la contraseña
         recoveryDialog = new Dialog(this);
         recoveryDialog.setContentView(R.layout.dialog_recovery_layout);
+
+
+        final Button button = (Button) findViewById(R.id.btnSignUp);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                bundle = new Bundle();
+                bundle.putString("type", String.valueOf(0));
+                Intent intent = new Intent(getApplicationContext(), FichaOdontologica.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+                /*
+                *
+                * bundle = new Bundle();
+                    bundle.putString("customerPosition", String.valueOf(pos));
+                    Intent intent = new Intent(getApplicationContext(), EditUsers.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                *
+                * */
+            }
+        });
+
 
         //Se crea el textView necesario para poder abrir el dialog
         TextView forgetPasswordTV = (TextView) findViewById(R.id.forget_passwordTV);
