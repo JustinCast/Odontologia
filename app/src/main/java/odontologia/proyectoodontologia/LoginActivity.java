@@ -3,23 +3,29 @@ package odontologia.proyectoodontologia;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+import android.app.*;
 import android.app.LoaderManager.LoaderCallbacks;
-
+import android.content.Context;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.Loader;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.*;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -27,6 +33,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -61,6 +68,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private Dialog recoveryDialog;
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,17 +92,59 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        final Intent MainActivityIntent = new Intent(this, MainActivity.class);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                /*ESTO ES POR MIENTRAS*/
+                startActivity(MainActivityIntent);
+//                attemptLogin();
             }
         });
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-    }
+        //Se crea el dialogo para recuperar la contraseña
+        recoveryDialog = new Dialog(this);
+        recoveryDialog.setContentView(R.layout.dialog_recovery_layout);
 
+        //Se crea el textView necesario para poder abrir el dialog
+        TextView forgetPasswordTV = (TextView) findViewById(R.id.forget_passwordTV);
+        //se crea el OnClickListener necesario para abrir el dialogo
+//        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+//        final EditText emailEditTxt = new EditText(alertDialogBuilder.getContext());
+//        emailEditTxt.setHint("Email");
+//        alertDialogBuilder.setView(emailEditTxt);
+//        alertDialogBuilder.setMessage("Recuperacion de contraseña")
+//                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        if(!emailEditTxt.getText().toString().contains("@")) {
+//                            emailEditTxt.setError("Correo Inválido");
+//
+//                        }
+//                    }
+//                })
+//                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        // User cancelled the dialog
+//                    }
+//                });
+//        final AlertDialog alertDialog = alertDialogBuilder.create();
+        LinearLayout layout = (LinearLayout) this.getLayoutInflater().inflate(R.layout.dialog_recovery_layout, null);
+        layout.getChildAt(0).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println(((EditText) v).getText());
+            }
+        });
+        forgetPasswordTV.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recoveryDialog.show();
+            }
+        });
+
+    }
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
             return;
@@ -253,6 +304,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
     }
 
+
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
         List<String> emails = new ArrayList<>();
@@ -277,6 +329,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
+    }
+
+    public void OnClick(View view) {
+        if(String.valueOf(view.getId()).equals("btn_accept")){
+            System.out.println(editText.getText());
+        }
+
     }
 
 

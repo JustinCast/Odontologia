@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_citas"
+            android:title="Citas" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_historial_citas"
+            android:title="Registro de Citas" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_ficha_odontologica"
+            android:title="Ficha Odontológica" />
+
+    </group>
+
+    <item android:title="Acerca de..">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_contactos"
+                android:title="Contactos" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_desarrolladores"
+                android:title="Desarrolladores" />
+        </menu>
+    </item>
+
+</menu>
