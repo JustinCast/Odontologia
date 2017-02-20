@@ -3,30 +3,30 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_appointments"
             android:icon="@drawable/ic_citas"
-            android:title="Citas" />
+            android:title="@string/appointments" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_appointment_registry"
             android:icon="@drawable/ic_historial_citas"
-            android:title="Registro de Citas" />
+            android:title="@string/appointment_registry" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_odontological_sheet"
             android:icon="@drawable/ic_ficha_odontologica"
-            android:title="Ficha Odontológica" />
+            android:title="@string/odontological_sheet" />
 
     </group>
 
-    <item android:title="Acerca de..">
+    <item android:title="@string/about">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_contacts"
                 android:icon="@drawable/ic_contactos"
-                android:title="Contactos" />
+                android:title="@string/contacts" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_developers"
                 android:icon="@drawable/ic_desarrolladores"
-                android:title="Desarrolladores" />
+                android:title="@string/developers" />
         </menu>
     </item>
 
