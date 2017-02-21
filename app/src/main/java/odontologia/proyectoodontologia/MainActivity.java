@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -52,12 +53,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 if(((Spinner) findViewById(R.id.appointment_day_spinner)).getSelectedItem() != null &&
-                        ((Spinner) findViewById(R.id.appointment_hour_spinner)).getSelectedItem() != null )
+                        ((ListView) findViewById(R.id.listView)).getSelectedItem() != null )
                     succesToast.show();
                 else
                     errorToast.show();
             }
         });
+        chargeListView();
 
     }
 
@@ -79,19 +81,6 @@ public class MainActivity extends AppCompatActivity
                 new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerArrayDay);
         appointmentDaySpinner.setAdapter(spinnerArrayAdapterDay);
 
-        //Spinner para la hora
-        Spinner appointmentHourSpinner = (Spinner) findViewById(R.id.appointment_hour_spinner);
-        appointmentHourSpinner.setPrompt("Hora");
-        ArrayList<String> spinnerArrayHour = new ArrayList<>();
-        spinnerArrayHour.add("1:00 pm");
-        spinnerArrayHour.add("2:00 pm");
-        spinnerArrayHour.add("3:00 pm");
-        spinnerArrayHour.add("4:00 pm");
-        spinnerArrayHour.add("4:40 pm");
-        spinnerArrayHour.add("5:00 pm");
-        ArrayAdapter<String> spinnerArrayAdapterHour =
-                new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerArrayHour);
-        appointmentHourSpinner.setAdapter(spinnerArrayAdapterHour);
     }
 
     @Override
@@ -149,5 +138,13 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void chargeListView(){
+        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        for(int i = 0; i < 10; i++)
+            listViewAdapter.add(String.valueOf(i));
+        ListView listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(listViewAdapter);
     }
 }

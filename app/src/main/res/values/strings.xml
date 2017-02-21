@@ -66,6 +66,7 @@
     <string name="contacts">Contactos</string>
     <string name="developers">Desarrolladores</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="reserve">Reservar</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
