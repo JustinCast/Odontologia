@@ -1,7 +1,10 @@
 package odontologia.proyectoodontologia;
 
+import android.content.ClipData;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -13,8 +16,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -117,7 +123,7 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.nav_appointments) {
@@ -141,10 +147,17 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void chargeListView(){
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        for(int i = 0; i < 10; i++)
+        final ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice);
+        for(int i = 0; i < 5; i++)
             listViewAdapter.add(String.valueOf(i));
-        ListView listView = (ListView) findViewById(R.id.listView);
+        final ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(listViewAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+
     }
 }

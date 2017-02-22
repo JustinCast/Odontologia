@@ -26,6 +26,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -358,8 +359,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * */
     public void OnClick(View view) {
         final LinearLayout layout = (LinearLayout) this.getLayoutInflater().inflate(R.layout.dialog_recovery_layout, null);
-        TextInputEditText emailEditText = (TextInputEditText) layout.getChildAt(0);
-        if(emailEditText.getText().length() == 0){
+        Button button = (Button) view;
+        System.out.println(button.getClass().getSimpleName());
+        EditText emailEditText = (EditText) layout.getChildAt(0);
+        if(emailEditText.getText().toString().isEmpty()){
             Toast fieldRequiredToast = Toast.makeText(recoveryDialog.getContext(), getText(R.string.error_field_required), Toast.LENGTH_SHORT);
             fieldRequiredToast.show();
         }
