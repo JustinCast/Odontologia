@@ -19,8 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="@string/check_afirmation_question"
-                android:layout_centerVertical="false" />
+                android:text="@string/check_afirmation_question" />
 
             <TextView
                 android:text="@string/check_afirmation_question_indication"

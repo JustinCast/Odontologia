@@ -75,5 +75,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="datesRegister">Registro de citas</string>
+    <string name="date">Fecha</string>
+    <string name="tooth">Pieza dental</string>
+    <string name="medication">Tratamiento</string>
+    <string name="payment">Saldo</string>
+    <string name="description">Descripcion</string>
 
 </resources>

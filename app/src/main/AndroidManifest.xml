@@ -24,14 +24,15 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleInstance"
             android:label="@string/title_activity_main"
+            android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".FichaOdontologica"
-            android:launchMode="singleInstance"
             android:label="@string/odontological_sheet"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DateRegister" />
     </application>
 
 </manifest>
