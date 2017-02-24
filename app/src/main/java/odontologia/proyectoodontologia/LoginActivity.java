@@ -19,11 +19,14 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.*;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +38,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -154,13 +158,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 //                    }
 //                });
 //        final AlertDialog alertDialog = alertDialogBuilder.create();
-        LinearLayout layout = (LinearLayout) this.getLayoutInflater().inflate(R.layout.dialog_recovery_layout, null);
-        layout.getChildAt(0).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println(((EditText) v).getText());
-            }
-        });
         forgetPasswordTV.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -355,11 +352,30 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailView.setAdapter(adapter);
     }
 
+    /**
+     * Método encargado de manejar el Handler del btn aceptar en recoveryDialog
+     * @param view   Button
+     * Se debe hacer un cast al view
+     * */
     public void OnClick(View view) {
-        if(String.valueOf(view.getId()).equals("btn_accept")){
-            System.out.println(editText.getText());
+        final LinearLayout layout = (LinearLayout) this.getLayoutInflater().inflate(R.layout.dialog_recovery_layout, null);
+        Button button = (Button) view;
+        System.out.println(button.getClass().getSimpleName());
+        EditText emailEditText = (EditText) layout.getChildAt(0);
+        if(emailEditText.getText().toString().isEmpty()){
+            Toast fieldRequiredToast = Toast.makeText(recoveryDialog.getContext(), getText(R.string.error_field_required), Toast.LENGTH_SHORT);
+            fieldRequiredToast.show();
         }
 
+    }
+
+    /**
+     * Método encargado de manejar el handler del btn cancelar en el recoveryDialog
+     * @param view Button
+     * Se debe hacer un cast al view
+     * */
+    public void OnClickCancel(View view) {
+        recoveryDialog.cancel();
     }
 
 

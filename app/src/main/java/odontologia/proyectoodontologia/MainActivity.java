@@ -1,6 +1,10 @@
 package odontologia.proyectoodontologia;
 
+import android.content.ClipData;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -12,8 +16,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -51,12 +59,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 if(((Spinner) findViewById(R.id.appointment_day_spinner)).getSelectedItem() != null &&
-                        ((Spinner) findViewById(R.id.appointment_hour_spinner)).getSelectedItem() != null )
+                        ((ListView) findViewById(R.id.listView)).getSelectedItem() != null )
                     succesToast.show();
                 else
                     errorToast.show();
             }
         });
+        chargeListView();
 
     }
 
@@ -78,19 +87,6 @@ public class MainActivity extends AppCompatActivity
                 new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerArrayDay);
         appointmentDaySpinner.setAdapter(spinnerArrayAdapterDay);
 
-        //Spinner para la hora
-        Spinner appointmentHourSpinner = (Spinner) findViewById(R.id.appointment_hour_spinner);
-        appointmentHourSpinner.setPrompt("Hora");
-        ArrayList<String> spinnerArrayHour = new ArrayList<>();
-        spinnerArrayHour.add("1:00 pm");
-        spinnerArrayHour.add("2:00 pm");
-        spinnerArrayHour.add("3:00 pm");
-        spinnerArrayHour.add("4:00 pm");
-        spinnerArrayHour.add("4:40 pm");
-        spinnerArrayHour.add("5:00 pm");
-        ArrayAdapter<String> spinnerArrayAdapterHour =
-                new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerArrayHour);
-        appointmentHourSpinner.setAdapter(spinnerArrayAdapterHour);
     }
 
     @Override
@@ -127,24 +123,41 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_appointments) {
+            Intent appointmentIntent = new Intent(this, MainActivity.class);
+            startActivity(appointmentIntent);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_appointment_registry) {
 
-        }else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_odontological_sheet) {
+            Intent odontologicalSheet = new Intent(this, FichaOdontologica.class);
+            startActivity(odontologicalSheet);
+        }else if (id == R.id.nav_contacts) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_developers) {
 
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void chargeListView(){
+        final ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice);
+        for(int i = 0; i < 5; i++)
+            listViewAdapter.add(String.valueOf(i));
+        final ListView listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(listViewAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+
     }
 }
