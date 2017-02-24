@@ -1,12 +1,9 @@
 package odontologia.proyectoodontologia;
 
-import android.content.ClipData;
 import android.content.Intent;
-import android.graphics.Color;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,21 +13,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    boolean listViewState;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTitle("Manejo Citas");
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -53,19 +55,20 @@ public class MainActivity extends AppCompatActivity
         //Click Listener el boton reservar
         Button reserveBtn = (Button) findViewById(R.id.reserve_btn);
         // Se crea el Toast de éxito
-        final Toast succesToast = Toast.makeText(this, R.string.succes_appointment,Toast.LENGTH_SHORT);
+        final Toast successToast = Toast.makeText(this, R.string.succes_appointment,Toast.LENGTH_SHORT);
         final Toast errorToast = Toast.makeText(this, R.string.error_appointment, Toast.LENGTH_SHORT);
+        chargeListView();
+
         reserveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(((Spinner) findViewById(R.id.appointment_day_spinner)).getSelectedItem() != null &&
-                        ((ListView) findViewById(R.id.listView)).getSelectedItem() != null )
-                    succesToast.show();
+                System.out.println(((ListView)findViewById(R.id.listView)).getSelectedItem());
+                if(listViewState)
+                    successToast.show();
                 else
                     errorToast.show();
             }
         });
-        chargeListView();
 
     }
 
@@ -73,20 +76,43 @@ public class MainActivity extends AppCompatActivity
      * Metodo encargado de llenar los spinner con sus respectivos datos
      * */
     private void loadSpinnerData(){
+
         //Spinner para el día
         Spinner appointmentDaySpinner = (Spinner) findViewById(R.id.appointment_day_spinner);
         appointmentDaySpinner.setPrompt("Dia");
 
+        //es_ES
+        Locale.setDefault(new Locale("es_ES"));
+
+
+        //De la siguiente forma se añaden las fechas al spinner
         ArrayList<String> spinnerArrayDay = new ArrayList<>();
-        spinnerArrayDay.add("Uno");
-        spinnerArrayDay.add("Dos");
-        spinnerArrayDay.add("Tres");
-        spinnerArrayDay.add("Cuatro");
-        spinnerArrayDay.add("Cinco");
+        Calendar calendar = Calendar.getInstance(new Locale("es_ES"));
+        calendar.add(Calendar.MONTH, -1);
+        calendar.add(Calendar.DAY_OF_MONTH, -1);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+        String date;
+        for(int i = 1;i < 30; i++)
+        {
+            date = sdf.format(calendar.getTime());
+            spinnerArrayDay.add(date);
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+
         ArrayAdapter<String> spinnerArrayAdapterDay =
                 new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerArrayDay);
         appointmentDaySpinner.setAdapter(spinnerArrayAdapterDay);
+        appointmentDaySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     @Override
@@ -145,17 +171,22 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
+    /**
+     * Método encargado de llenar el ListView del activity principal
+     * */
     private void chargeListView(){
-        final ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice);
-        for(int i = 0; i < 5; i++)
+        ListView listView = (ListView) findViewById(R.id.listView);
+        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice);
+
+        for(int i = 0; i < 10; i++){
             listViewAdapter.add(String.valueOf(i));
-        final ListView listView = (ListView) findViewById(R.id.listView);
+        }
+
         listView.setAdapter(listViewAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                listViewState = true;
             }
         });
 
