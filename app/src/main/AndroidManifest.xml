@@ -33,6 +33,7 @@
             android:label="@string/odontological_sheet"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DevelopersActivity"></activity>
     </application>
 
 </manifest>

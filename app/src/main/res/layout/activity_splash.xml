@@ -1,14 +1,30 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
     tools:context=".DevelopersActivity" >
 
+
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_width="318dp"
+        android:layout_height="420dp"
         android:contentDescription="@string/app_name"
         android:scaleType="fitXY"
-        android:src="@mipmap/ic_community" />
+        android:src="@drawable/logocomunidad"
+        android:id="@+id/imageView2"/>
 
-</RelativeLayout>
+    <TextView
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/justin_dev"/>
+    <TextView
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/brayan_dev"/>
+</LinearLayout>
