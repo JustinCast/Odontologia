@@ -156,14 +156,12 @@ public class MainActivity extends AppCompatActivity
             Intent appointmentIntent = new Intent(this, MainActivity.class);
             startActivity(appointmentIntent);
 
-        } else if (id == R.id.nav_appointment_registry) {
-            Intent activityDateRegister = new Intent(this, DateRegister.class);
-            startActivity(activityDateRegister);
-        } else if (id == R.id.nav_odontological_sheet) {
+        }else if (id == R.id.nav_odontological_sheet) {
             Intent odontologicalSheet = new Intent(this, FichaOdontologica.class);
             startActivity(odontologicalSheet);
         }else if (id == R.id.nav_developers) {
-
+            Intent developersActivity = new Intent(this, DevelopersActivity.class);
+            startActivity(developersActivity);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

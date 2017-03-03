@@ -84,4 +84,9 @@
     <string name="log_out">Salir</string>
     <string name="hours">Horas</string>
 
+    <string name="title_activity_developers">Desarrolladores</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+
 </resources>
