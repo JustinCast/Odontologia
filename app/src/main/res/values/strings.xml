@@ -81,5 +81,7 @@
     <string name="medication">Tratamiento</string>
     <string name="payment">Saldo</string>
     <string name="description">Descripcion</string>
+    <string name="log_out">Salir</string>
+    <string name="hours">Horas</string>
 
 </resources>

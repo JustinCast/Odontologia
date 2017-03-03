@@ -30,7 +30,7 @@ import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    //https://android.jlelse.eu/creating-an-intro-screen-for-your-app-using-viewpager-pagetransformer-9950517ea04f#.911dhxhbh
     boolean listViewState;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,8 +177,16 @@ public class MainActivity extends AppCompatActivity
         ListView listView = (ListView) findViewById(R.id.listView);
         ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice);
 
-        for(int i = 0; i < 10; i++){
-            listViewAdapter.add(String.valueOf(i));
+        Calendar calendar = Calendar.getInstance(new Locale("es_ES"));
+        calendar.add(Calendar.MONTH, -1);
+        calendar.add(Calendar.DAY_OF_MONTH, -1);
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSSZ");
+        String date;
+        for(int i = 1;i < 30; i++)
+        {
+            date = sdf.format(calendar.getTime());
+            listViewAdapter.add(date);
+            calendar.add(Calendar.HOUR_OF_DAY, 1);
         }
 
         listView.setAdapter(listViewAdapter);
