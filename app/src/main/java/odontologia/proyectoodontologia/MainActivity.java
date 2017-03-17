@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -28,6 +29,11 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
+
+/**
+ * Clase encargada de manejar los distintos activities de la aplicacion
+ *
+ * */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     //https://android.jlelse.eu/creating-an-intro-screen-for-your-app-using-viewpager-pagetransformer-9950517ea04f#.911dhxhbh
@@ -139,29 +145,39 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
 
+
+    /**
+     * Aca se abren los activities deseados
+     * */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
+        //Activity 'Citas'
         if (id == R.id.nav_appointments) {
             Intent appointmentIntent = new Intent(this, MainActivity.class);
             startActivity(appointmentIntent);
 
+        //Activity 'Ficha Odontologica'
         }else if (id == R.id.nav_odontological_sheet) {
             Intent odontologicalSheet = new Intent(this, FichaOdontologica.class);
             startActivity(odontologicalSheet);
+
+        //Activity 'Desarrolladores'
         }else if (id == R.id.nav_developers) {
             Intent developersActivity = new Intent(this, DevelopersActivity.class);
             startActivity(developersActivity);
+
+        //Dialog para salir de la aplicación
+        }else if (id == R.id.log_out) {
+            QuitDialog quitDialog = new QuitDialog();
+            FragmentManager manager = getSupportFragmentManager();
+            quitDialog.show(manager,"Salir");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -170,6 +186,7 @@ public class MainActivity extends AppCompatActivity
     }
     /**
      * Método encargado de llenar el ListView del activity principal
+     * Se carga con fechas
      * */
     private void chargeListView(){
         ListView listView = (ListView) findViewById(R.id.listView);

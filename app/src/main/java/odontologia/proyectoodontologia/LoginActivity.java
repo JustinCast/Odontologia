@@ -40,13 +40,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.okhttp.OkHttpClient;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import layout.RecoveryDialog;
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.OkClient;
+import retrofit.client.Response;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
+ *Se redirige a clase y layout encargados de manejar la recuperación de contraseña
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
@@ -72,10 +82,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private Dialog recoveryDialog;
-    private EditText editText;
+    private RecoveryDialog recoveryDialog;
     private Bundle bundle;
-
+    String baseurl ="http://172.24.45.97";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,12 +105,30 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+        //Btn 'Ingresar'
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         final Intent MainActivityIntent = new Intent(this, MainActivity.class);
+
+        RestAdapter.Builder builder = new RestAdapter.Builder().setEndpoint(baseurl).setClient(new OkClient(new OkHttpClient()));
+        MainInterface mainInterface = builder.build().create(MainInterface.class);
+        mainInterface.getAllStudents(new Callback<ArrayList<Student>>() {
+            @Override
+            public void success(ArrayList<Student> students, Response response) {
+                for (int i = 0; i < students.size(); i++) {
+                    System.out.println(students.get(i).getCarne());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                System.out.println("Hubo un error al tratar de obtener los datos");
+            }
+        });
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 /*ESTO ES POR MIENTRAS*/
+                System.out.println("Pasó");
                 startActivity(MainActivityIntent);
 //                attemptLogin();
             }
@@ -110,10 +137,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
         //Se crea el dialogo para recuperar la contraseña
-        recoveryDialog = new Dialog(this);
-        recoveryDialog.setContentView(R.layout.dialog_recovery_layout);
 
 
+        //Creacion del btn ´SignUP'
         final Button button = (Button) findViewById(R.id.btnSignUp);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -123,45 +149,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 intent.putExtras(bundle);
                 startActivity(intent);
 
-                /*
-                *
-                * bundle = new Bundle();
-                    bundle.putString("customerPosition", String.valueOf(pos));
-                    Intent intent = new Intent(getApplicationContext(), EditUsers.class);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                *
-                * */
             }
         });
 
 
-        //Se crea el textView necesario para poder abrir el dialog
+        //Se crea el textView necesario para poder abrir el dialog de recuperacion de contraseña
         TextView forgetPasswordTV = (TextView) findViewById(R.id.forget_passwordTV);
-        //se crea el OnClickListener necesario para abrir el dialogo
-//        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-//        final EditText emailEditTxt = new EditText(alertDialogBuilder.getContext());
-//        emailEditTxt.setHint("Email");
-//        alertDialogBuilder.setView(emailEditTxt);
-//        alertDialogBuilder.setMessage("Recuperacion de contraseña")
-//                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        if(!emailEditTxt.getText().toString().contains("@")) {
-//                            emailEditTxt.setError("Correo Inválido");
-//
-//                        }
-//                    }
-//                })
-//                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        // User cancelled the dialog
-//                    }
-//                });
-//        final AlertDialog alertDialog = alertDialogBuilder.create();
         forgetPasswordTV.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                recoveryDialog.show();
+                FragmentManager manager =  getSupportFragmentManager();
+                recoveryDialog = new RecoveryDialog();
+                recoveryDialog.show(manager, "Recuperación de Contraseña");
+
             }
         });
 
@@ -353,29 +353,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     /**
-     * Método encargado de manejar el Handler del btn aceptar en recoveryDialog
-     * @param view   Button
-     * Se debe hacer un cast al view
-     * */
-    public void OnClick(View view) {
-        final LinearLayout layout = (LinearLayout) this.getLayoutInflater().inflate(R.layout.dialog_recovery_layout, null);
-        Button button = (Button) view;
-        System.out.println(button.getClass().getSimpleName());
-        EditText emailEditText = (EditText) layout.getChildAt(0);
-        if(emailEditText.getText().toString().isEmpty()){
-            Toast fieldRequiredToast = Toast.makeText(recoveryDialog.getContext(), getText(R.string.error_field_required), Toast.LENGTH_SHORT);
-            fieldRequiredToast.show();
-        }
-
-    }
-
-    /**
      * Método encargado de manejar el handler del btn cancelar en el recoveryDialog
      * @param view Button
      * Se debe hacer un cast al view
      * */
     public void OnClickCancel(View view) {
-        recoveryDialog.cancel();
+        recoveryDialog.getActivity().finish();
     }
 
 

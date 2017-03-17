@@ -93,5 +93,7 @@
     <string name="save_btn">GUARDAR</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
+    <string name="quit">¿Salir?</string>
+    <string name="community">Comunidad de Aplicaciones Móviles</string>
 
 </resources>
