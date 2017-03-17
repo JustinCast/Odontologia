@@ -14,49 +14,54 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="8dp">
+            android:padding="@dimen/personal_and_medical_paddin">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:textSize="20sp"
-                android:text="@string/check_afirmation_question" />
+                android:textSize="@dimen/titles"
+                android:text="@string/check_afirmation_question"
+                android:textColor="@color/colorPrimaryDark"/>
 
             <TextView
                 android:text="@string/check_afirmation_question_indication"
-                android:textSize="16sp"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/sub_titles"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"/>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="44dp">
+                android:layout_height="@dimen/personal_medical_height">
 
                 <CheckBox
                     android:text="@string/recent_physical_test"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
-                    android:id="@+id/checkBox" />
+                    android:id="@+id/checkBox"/>
 
                 <CheckBox
                     android:text="@string/asthma"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
                     android:id="@+id/checkBox2" />
-
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="44dp">
+                android:layout_height="@dimen/personal_medical_height">
 
                 <CheckBox
                     android:text="@string/heart_diseases"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
@@ -64,6 +69,7 @@
 
                 <CheckBox
                     android:text="@string/hepatitis"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
@@ -73,10 +79,11 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="44dp">
+                android:layout_height="@dimen/personal_medical_height">
 
                 <CheckBox
                     android:text="@string/low_blood_pressure"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
@@ -84,6 +91,7 @@
 
                 <CheckBox
                     android:text="@string/nephrosis"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
@@ -93,10 +101,11 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="44dp">
+                android:layout_height="@dimen/personal_medical_height">
 
                 <CheckBox
                     android:text="@string/high_blood_pressure"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
@@ -104,6 +113,7 @@
 
                 <CheckBox
                     android:text="@string/rheumatic_fever"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
@@ -113,15 +123,17 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="44dp">
+                android:layout_height="@dimen/personal_medical_height">
                 <CheckBox
                     android:text="@string/circulatory_diseases"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
                     android:id="@+id/checkBox9" />
                 <CheckBox
                     android:text="@string/epilepsy"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
@@ -131,10 +143,11 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="44dp">
+                android:layout_height="@dimen/personal_medical_height">
 
                 <CheckBox
                     android:text="@string/pain_in_anditive_region"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
@@ -142,6 +155,7 @@
 
                 <CheckBox
                     android:text="@string/venereal_diseases"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
@@ -151,10 +165,11 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="44dp">
+                android:layout_height="@dimen/personal_medical_height">
 
                 <CheckBox
                     android:text="@string/excessive_bleeding"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
@@ -162,37 +177,62 @@
 
                 <CheckBox
                     android:text="@string/thyroid_gland_disorders"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
                     android:id="@+id/checkBox13" />
             </LinearLayout>
 
-            <CheckBox
-                android:text="@string/bleeding_gums"
-                android:layout_width="wrap_content"
-                android:layout_height="44dp"
-                android:id="@+id/checkBox16" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/personal_medical_height">
 
+                <CheckBox
+                    android:text="@string/any_allergy"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight= "1"
+                    android:id="@+id/checkBox18" />
 
-            <CheckBox
-                android:text="@string/any_allergy"
-                android:layout_width="wrap_content"
-                android:layout_height="44dp"
-                android:id="@+id/checkBox18" />
+                <CheckBox
+                    android:text="@string/allergy_antibiotics"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight= "1"
+                    android:id="@+id/checkBox17" />
+            </LinearLayout>
 
-            <CheckBox
-                android:text="@string/allergy_antibiotics"
-                android:layout_width="wrap_content"
-                android:layout_height="44dp"
-                android:id="@+id/checkBox17" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/personal_medical_height">
+
+                <CheckBox
+                    android:text="@string/bleeding_gums"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/checkBox16" />
+            </LinearLayout>
+
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
                 android:hint="@string/others"
                 android:id="@+id/editText" />
+
+            <Button
+                android:text="@string/save_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/save"
+                android:textSize="14sp"/>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

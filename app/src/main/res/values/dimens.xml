@@ -7,4 +7,11 @@
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="elevation">5dp</dimen>
+    <dimen name="personal_information_from_database">14sp</dimen>
+    <dimen name="personal_information_from_app">16sp</dimen>
+    <dimen name="personal_medical_height">50dp</dimen>
+    <dimen name="personal_and_medical_paddin">12dp</dimen>
+    <dimen name="titles">20sp</dimen>
+    <dimen name="sub_titles">16sp</dimen>
 </resources>

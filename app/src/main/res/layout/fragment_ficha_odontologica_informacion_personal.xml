@@ -7,255 +7,380 @@
 
     <!-- TODO: Update blank fragment layout -->
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="12dp">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="@dimen/personal_medical_height"
+                android:paddingLeft="@dimen/personal_and_medical_paddin">
 
                 <TextView
                     android:text="@string/scholarship"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView15"
                     android:layout_weight="1"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/personal_information_from_app"/>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/scholarship_tv"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="@dimen/personal_information_from_database"/>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_separator_line"/>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="@dimen/personal_medical_height"
+                android:paddingLeft="@dimen/personal_and_medical_paddin">
 
                 <TextView
                     android:text="@string/name"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView17"
                     android:layout_weight="1"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/personal_information_from_app"/>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/name_tv"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="@dimen/personal_information_from_database"/>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_separator_line"/>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="@dimen/personal_medical_height"
+                android:paddingLeft="@dimen/personal_and_medical_paddin">
 
                 <TextView
                     android:text="@string/surname"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView19"
                     android:layout_weight="1"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/personal_information_from_app"/>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/surname_tv"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="@dimen/personal_information_from_database"/>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_separator_line"/>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="@dimen/personal_medical_height"
+                android:paddingLeft="@dimen/personal_and_medical_paddin">
 
                 <TextView
                     android:text="@string/second_surname"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView21"
                     android:layout_weight="1"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/personal_information_from_app"/>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/second_surname_tv"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="@dimen/personal_information_from_database"/>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_separator_line"/>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="@dimen/personal_medical_height"
+                android:paddingLeft="@dimen/personal_and_medical_paddin">
 
                 <TextView
                     android:text="@string/student_id"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView23"
                     android:layout_weight="1"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/personal_information_from_app"/>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/student_id_tv"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="@dimen/personal_information_from_database"/>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_separator_line"/>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="@dimen/personal_medical_height"
+                android:paddingLeft="@dimen/personal_and_medical_paddin">
 
                 <TextView
                     android:text="@string/major"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView25"
                     android:layout_weight="1"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/personal_information_from_app"/>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/major_tv"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="@dimen/personal_information_from_database"/>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_separator_line"/>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="@dimen/personal_medical_height"
+                android:paddingLeft="@dimen/personal_and_medical_paddin">
 
                 <TextView
                     android:text="@string/civil_status"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView27"
                     android:layout_weight="1"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/personal_information_from_app"/>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/civil_status_tv"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="@dimen/personal_information_from_database"/>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_separator_line"/>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="@dimen/personal_medical_height"
+                android:paddingLeft="@dimen/personal_and_medical_paddin">
 
                 <TextView
                     android:text="@string/CCSS_id"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView29"
                     android:layout_weight="1"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/personal_information_from_app"/>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/CCSS_id_tv"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="@dimen/personal_information_from_database"/>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_separator_line"/>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="@dimen/personal_medical_height"
+                android:paddingLeft="@dimen/personal_and_medical_paddin">
 
                 <TextView
                     android:text="@string/birth_date"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView31"
                     android:layout_weight="1"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/personal_information_from_app"/>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/birth_date_tv"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="@dimen/personal_information_from_database"/>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_separator_line"/>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="@dimen/personal_medical_height"
+                android:paddingLeft="@dimen/personal_and_medical_paddin">
 
                 <TextView
                     android:text="@string/person_id"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView5"
                     android:layout_weight="1"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/personal_information_from_app"/>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/person_id_tv"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="@dimen/personal_information_from_database"/>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_separator_line"/>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="@dimen/personal_medical_height"
+                android:paddingLeft="@dimen/personal_and_medical_paddin">
 
                 <TextView
                     android:text="@string/family_address"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView7"
                     android:layout_weight="1"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/personal_information_from_app"/>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/family_address_tv"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="@dimen/personal_information_from_database"/>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_separator_line"/>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="@dimen/personal_medical_height"
+                android:paddingLeft="@dimen/personal_and_medical_paddin">
 
                 <TextView
                     android:text="@string/phone"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView9"
                     android:layout_weight="1"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/personal_information_from_app"/>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/phone_tv"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="@dimen/personal_information_from_database"/>
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

@@ -17,7 +17,7 @@
     <TextView
         android:gravity="center"
         android:text="@string/days"
-        android:textSize="20sp"
+        android:textSize="@dimen/titles"
         android:layout_gravity="center"
         android:layout_width="125dp"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
         android:weightSum="1"
         android:id="@+id/linearLayout">
         <TextView
-            android:textSize="20sp"
+            android:textSize="@dimen/titles"
             android:layout_gravity="center"
             android:layout_width="125dp"
             android:textAlignment="center"
