@@ -3,11 +3,8 @@ package odontologia.proyectoodontologia;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.*;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.content.Context;
 import android.content.CursorLoader;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
@@ -19,16 +16,10 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.*;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -36,21 +27,20 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.squareup.okhttp.OkHttpClient;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import layout.RecoveryDialog;
-import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.OkClient;
-import retrofit.client.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -78,19 +68,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
+    private AutoCompleteTextView carnetTextView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
     private RecoveryDialog recoveryDialog;
     private Bundle bundle;
-    String baseurl ="http://172.24.45.97";
+    String baseurl ="http://192.168.43.49";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        carnetTextView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -109,28 +99,35 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         final Intent MainActivityIntent = new Intent(this, MainActivity.class);
 
-        RestAdapter.Builder builder = new RestAdapter.Builder().setEndpoint(baseurl).setClient(new OkClient(new OkHttpClient()));
-        MainInterface mainInterface = builder.build().create(MainInterface.class);
-        mainInterface.getAllStudents(new Callback<ArrayList<Student>>() {
-            @Override
-            public void success(ArrayList<Student> students, Response response) {
-                for (int i = 0; i < students.size(); i++) {
-                    System.out.println(students.get(i).getCarne());
-                }
-            }
+        //Retrofit.Builder builder = new Retrofit.Builder().baseUrl(baseurl).setClient(new OkClient(new OkHttpClient()));
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseurl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-            @Override
-            public void failure(RetrofitError error) {
-                System.out.println("Hubo un error al tratar de obtener los datos");
-            }
-        });
+
+        final MainInterface mainInterface = retrofit.create(MainInterface.class);
+        final String carne = "2016067366";
+        final int pin = 5753;
+        final Call<estudiante> call = mainInterface.getStudent(carne,pin);
+
+
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*ESTO ES POR MIENTRAS*/
-                System.out.println("Pasó");
+                call.enqueue(new Callback<estudiante>() {
+                    @Override
+                    public void onResponse(Call<estudiante> call, Response<estudiante> response) {
+                        Toast.makeText(getApplicationContext(),"asd",Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<estudiante> call, Throwable t) {
+                        // Log error here since request failed
+                        Toast.makeText(getApplicationContext(),"mameichon",Toast.LENGTH_LONG).show();
+                    }
+                });
                 startActivity(MainActivityIntent);
-//                attemptLogin();
             }
         });
 
@@ -182,7 +179,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             return true;
         }
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
+            Snackbar.make(carnetTextView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
                     .setAction(android.R.string.ok, new View.OnClickListener() {
                         @Override
                         @TargetApi(Build.VERSION_CODES.M)
@@ -221,11 +218,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         // Reset errors.
-        mEmailView.setError(null);
+        carnetTextView.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
+        String email = carnetTextView.getText().toString();
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
@@ -240,12 +237,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
+            carnetTextView.setError(getString(R.string.error_field_required));
+            focusView = carnetTextView;
             cancel = true;
         } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
+            carnetTextView.setError(getString(R.string.error_invalid_email));
+            focusView = carnetTextView;
             cancel = true;
         }
 
@@ -349,7 +346,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 new ArrayAdapter<>(LoginActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
-        mEmailView.setAdapter(adapter);
+        carnetTextView.setAdapter(adapter);
     }
 
     /**

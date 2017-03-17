@@ -4,13 +4,13 @@ package odontologia.proyectoodontologia;
  * Created by Justin Cast on 11/3/2017
  */
 
-public class Student {
+public class estudiante {
     private int carne;
     private int pin;
 
-    public Student() {}
+    public estudiante() {}
 
-    public Student(int carne, int pin) {
+    public estudiante(int carne, int pin) {
         this.carne = carne;
         this.pin = pin;
     }

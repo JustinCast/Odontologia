@@ -4,16 +4,19 @@ package odontologia.proyectoodontologia;
  * Created by Justin Cast on 10/3/2017
  */
 
+
+
 import java.util.ArrayList;
-import retrofit.Callback;
-import retrofit.client.Response;
-import retrofit.http.Body;
-import retrofit.http.Field;
-import retrofit.http.FormUrlEncoded;
-import retrofit.http.GET;
-import retrofit.http.POST;
-import retrofit.http.Path;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
+
 
 public interface MainInterface {
-    @GET("/estudiantes/estudiante/{carne}/{pin}") void getAllStudents(Callback<ArrayList<Student>> usersCallBack);
+    @GET("/estudiantes/estudiante/{carne}/{pin}")
+    Call<estudiante> getStudent(@Path("carne") String carne, @Path("pin") int pin);
+    @POST("/estudiantes/estudiante/{carne}/{pin}") void verifyStudent(Callback<ArrayList<estudiante>> usersCallBack);
 }
