@@ -20,8 +20,8 @@ public interface MainInterface {
     Call<estudiante> getStudent(@Path("carne") String carne, @Path("pin") int pin);
     @POST("/estudiantes/estudiante/{carne}/{pin}") void verifyStudent(Callback<ArrayList<estudiante>> usersCallBack);
 
-    @GET("/estudiantes")
-    Call<estudiante> ;
+//    @GET("/estudiantes")
+//    Call<estudiante> ;
     @GET("/estudiantes")
     void GetStudentInformation(Callback<ArrayList<estudiante>>usersCallback);
     @GET("/estudiantes")

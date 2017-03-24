@@ -5,21 +5,21 @@ package odontologia.proyectoodontologia;
  */
 
 public class estudiante {
-    private int carne;
+    private String carne;
     private int pin;
 
     public estudiante() {}
 
-    public estudiante(int carne, int pin) {
+    public estudiante(String carne, int pin) {
         this.carne = carne;
         this.pin = pin;
     }
 
-    public int getCarne() {return carne;}
+    public String getCarne() {return carne;}
 
     public int getPin() {return pin;}
 
-    public void setCarne(int carne) {this.carne = carne;}
+    public void setCarne(String carne) {this.carne = carne;}
 
     public void setPin(int pin) {this.pin = pin;}
 }
