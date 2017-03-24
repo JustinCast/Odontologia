@@ -152,19 +152,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * @param pin (obtenido de mPasswordView)
      * */
     private boolean verifyStudent(String carne, int pin){
-        final int state[] = new int[0]; //esto es creado para poder ser accesado desde el lambda
+        final estudiante estudiante = new estudiante(carne,pin);
+        final int state[] = new int[1]; //esto es creado para poder ser accesado desde el lambda
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseurl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-
         final MainInterface mainInterface = retrofit.create(MainInterface.class);//se crea una interface para acceder a los datos del endpoint
         final Call<estudiante> call = mainInterface.getStudent(carne,pin);
         call.enqueue(new Callback<estudiante>() {
+
             @Override
             public void onResponse(Call<estudiante> call, Response<estudiante> response) {
-                state[0] = 1;
+                if(response.body().getCarne().equals(estudiante.getCarne()))
+                    state[0] = 1;
             }
 
             @Override
@@ -172,7 +174,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 state[0] = 0;
             }
         });
-        return state[0] == 1;//se retorna el booleano
+        return state[0] == 1;
+        //return state[0] == 1;//se retorna el estudiante
     }
 
     private void populateAutoComplete() {
