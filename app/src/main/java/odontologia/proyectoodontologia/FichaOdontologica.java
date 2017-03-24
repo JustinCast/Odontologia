@@ -115,6 +115,7 @@ public class FichaOdontologica extends AppCompatActivity {
             View rootView;
             if (getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
                 rootView = inflater.inflate(R.layout.fragment_ficha_odontologica_informacion_personal, container, false);
+
             }
             else {
                 rootView = inflater.inflate(R.layout.fragment_ficha_odontologica_informacion_medica, container, false);
