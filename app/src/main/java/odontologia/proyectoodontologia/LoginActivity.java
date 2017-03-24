@@ -141,10 +141,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 FragmentManager manager =  getSupportFragmentManager();
                 recoveryDialog = new RecoveryDialog();
                 recoveryDialog.show(manager, "Recuperación de Contraseña");
-
             }
         });
-
     }
 
 
@@ -172,7 +170,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onFailure(Call<estudiante> call, Throwable t) {
                 state[0] = 0;
-
             }
         });
         return state[0] == 1;//se retorna el booleano

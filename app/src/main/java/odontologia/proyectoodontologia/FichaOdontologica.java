@@ -21,6 +21,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class FichaOdontologica extends AppCompatActivity {
 
     /**
@@ -108,6 +114,30 @@ public class FichaOdontologica extends AppCompatActivity {
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
             return fragment;
+        }
+
+        private boolean obtainStudent(){
+            String baseurl ="http://172.24.41.170"; // destino del host donde se consumirán los datos
+            final int state[] = new int[0]; //esto es creado para poder ser accesado desde el lambda
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(baseurl)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            final MainInterface mainInterface = retrofit.create(MainInterface.class);//se crea una interface para acceder a los datos del endpoint
+            final Call<estudiante> call = mainInterface.getStudent();
+            call.enqueue(new Callback<estudiante>() {
+                @Override
+                public void onResponse(Call<estudiante> call, Response<estudiante> response) {
+                    state[0] = 1;
+                }
+
+                @Override
+                public void onFailure(Call<estudiante> call, Throwable t) {
+                    state[0] = 0;
+                }
+            });
+            return state[0] == 1;//se retorna el booleano
         }
 
 

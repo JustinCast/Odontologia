@@ -21,8 +21,6 @@ public interface MainInterface {
     @POST("/estudiantes/estudiante/{carne}/{pin}") void verifyStudent(Callback<ArrayList<estudiante>> usersCallBack);
 
     @GET("/estudiantes")
-    Call<estudiante> ;
-    @GET("/estudiantes")
     void GetStudentInformation(Callback<ArrayList<estudiante>>usersCallback);
     @GET("/estudiantes")
     Call<estudiante> getStudent();
