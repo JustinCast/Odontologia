@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -57,7 +58,7 @@ public class FichaOdontologica extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        scholarship = (TextView) findViewById(R.id.scholarship_tv);
+        //scholarship = (TextView) findViewById(R.id.scholarship_tv);
     }
 
 
@@ -109,15 +110,50 @@ public class FichaOdontologica extends AppCompatActivity {
             return fragment;
         }
 
+
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView;
+
             if (getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
                 rootView = inflater.inflate(R.layout.fragment_ficha_odontologica_informacion_personal, container, false);
+                final TextView scholarship = (TextView) rootView.findViewById(R.id.scholarship_tv);
+                final TextView name = (TextView) rootView.findViewById(R.id.name_tv);
+                final TextView surname = (TextView) rootView.findViewById(R.id.surname_tv);
+                final TextView second_surname = (TextView) rootView.findViewById(R.id.second_surname_tv);
+                final TextView student_id = (TextView) rootView.findViewById(R.id.student_id_tv);
+                final TextView major = (TextView) rootView.findViewById(R.id.major_tv);
+                final TextView civil_status = (TextView) rootView.findViewById(R.id.civil_status_tv);
+                final TextView CCSS_id = (TextView) rootView.findViewById(R.id.CCSS_id_tv);
+                final TextView birth_date = (TextView) rootView.findViewById(R.id.birth_date_tv);
+                final TextView person_id = (TextView) rootView.findViewById(R.id.person_id_tv);
+                final TextView family_address = (TextView) rootView.findViewById(R.id.family_address_tv);
+                final TextView phone = (TextView) rootView.findViewById(R.id.phone_tv);
+                scholarship.setText("holis");
+
             }
             else {
                 rootView = inflater.inflate(R.layout.fragment_ficha_odontologica_informacion_medica, container, false);
+                final CheckBox recent_physical_test = (CheckBox) rootView.findViewById(R.id.recent_physical_test_cb);
+                final CheckBox asthma = (CheckBox) rootView.findViewById(R.id.asthma_cb);
+                final CheckBox heart_diseases = (CheckBox) rootView.findViewById(R.id.heart_diseases_cb);
+                final CheckBox hepatitis = (CheckBox) rootView.findViewById(R.id.hepatitis_cb);
+                final CheckBox low_blood_pressure = (CheckBox) rootView.findViewById(R.id.low_blood_pressure_cb);
+                final CheckBox nephrosis = (CheckBox) rootView.findViewById(R.id.nephrosis_cb);
+                final CheckBox high_blood_pressure = (CheckBox) rootView.findViewById(R.id.high_blood_pressure_cb);
+                final CheckBox rheumatic_fever = (CheckBox) rootView.findViewById(R.id.rheumatic_fever_cb);
+                final CheckBox circulatory_diseases = (CheckBox) rootView.findViewById(R.id.circulatory_diseases_cb);
+                final CheckBox epilepsy = (CheckBox) rootView.findViewById(R.id.epilepsy_cb);
+                final CheckBox pain_in_anditive_region = (CheckBox) rootView.findViewById(R.id.pain_in_anditive_region_cb);
+                final CheckBox venereal_diseases = (CheckBox) rootView.findViewById(R.id.venereal_diseases_cb);
+                final CheckBox excessive_bleeding = (CheckBox) rootView.findViewById(R.id.excessive_bleeding_cb);
+                final CheckBox thyroid_gland_disorders = (CheckBox) rootView.findViewById(R.id.thyroid_gland_disorders_cb);
+                final CheckBox any_allergy = (CheckBox) rootView.findViewById(R.id.any_allergy_cb);
+                final CheckBox allergy_antibiotics = (CheckBox) rootView.findViewById(R.id.allergy_antibiotics_cb);
+                final CheckBox bleeding_gums = (CheckBox) rootView.findViewById(R.id.bleeding_gums_cb);
+
             }
             return rootView;
         }

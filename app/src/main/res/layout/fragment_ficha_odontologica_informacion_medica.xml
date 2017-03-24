@@ -43,7 +43,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
-                    android:id="@+id/checkBox"/>
+                    android:id="@+id/recent_physical_test_cb"/>
 
                 <CheckBox
                     android:text="@string/asthma"
@@ -51,7 +51,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
-                    android:id="@+id/checkBox2" />
+                    android:id="@+id/asthma_cb" />
             </LinearLayout>
 
             <LinearLayout
@@ -65,7 +65,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
-                    android:id="@+id/checkBox4" />
+                    android:id="@+id/heart_diseases_cb" />
 
                 <CheckBox
                     android:text="@string/hepatitis"
@@ -73,7 +73,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
-                    android:id="@+id/checkBox3" />
+                    android:id="@+id/hepatitis_cb" />
             </LinearLayout>
 
             <LinearLayout
@@ -87,7 +87,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
-                    android:id="@+id/checkBox6" />
+                    android:id="@+id/low_blood_pressure_cb" />
 
                 <CheckBox
                     android:text="@string/nephrosis"
@@ -95,7 +95,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
-                    android:id="@+id/checkBox5" />
+                    android:id="@+id/nephrosis_cb" />
             </LinearLayout>
 
             <LinearLayout
@@ -109,7 +109,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
-                    android:id="@+id/checkBox8" />
+                    android:id="@+id/high_blood_pressure_cb" />
 
                 <CheckBox
                     android:text="@string/rheumatic_fever"
@@ -117,7 +117,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
-                    android:id="@+id/checkBox7" />
+                    android:id="@+id/rheumatic_fever_cb" />
             </LinearLayout>
 
             <LinearLayout
@@ -130,14 +130,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
-                    android:id="@+id/checkBox9" />
+                    android:id="@+id/circulatory_diseases_cb" />
                 <CheckBox
                     android:text="@string/epilepsy"
                     android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
-                    android:id="@+id/checkBox10" />
+                    android:id="@+id/epilepsy_cb" />
             </LinearLayout>
 
             <LinearLayout
@@ -151,7 +151,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
-                    android:id="@+id/checkBox12" />
+                    android:id="@+id/pain_in_anditive_region_cb" />
 
                 <CheckBox
                     android:text="@string/venereal_diseases"
@@ -159,7 +159,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
-                    android:id="@+id/checkBox11" />
+                    android:id="@+id/venereal_diseases_cb" />
             </LinearLayout>
 
             <LinearLayout
@@ -173,7 +173,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
-                    android:id="@+id/checkBox14" />
+                    android:id="@+id/excessive_bleeding_cb" />
 
                 <CheckBox
                     android:text="@string/thyroid_gland_disorders"
@@ -181,7 +181,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
-                    android:id="@+id/checkBox13" />
+                    android:id="@+id/thyroid_gland_disorders_cb" />
             </LinearLayout>
 
             <LinearLayout
@@ -195,7 +195,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
-                    android:id="@+id/checkBox18" />
+                    android:id="@+id/any_allergy_cb" />
 
                 <CheckBox
                     android:text="@string/allergy_antibiotics"
@@ -203,7 +203,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
-                    android:id="@+id/checkBox17" />
+                    android:id="@+id/allergy_antibiotics_cb" />
             </LinearLayout>
 
             <LinearLayout
@@ -216,7 +216,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/checkBox16" />
+                    android:id="@+id/bleeding_gums_cb" />
             </LinearLayout>
 
 
@@ -225,7 +225,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
                 android:hint="@string/others"
-                android:id="@+id/editText" />
+                android:id="@+id/others_et" />
 
             <Button
                 android:text="@string/save_btn"
