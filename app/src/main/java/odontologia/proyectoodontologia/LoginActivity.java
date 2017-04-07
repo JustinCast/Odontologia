@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -34,7 +33,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import layout.RecoveryDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -72,7 +70,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private RecoveryDialog recoveryDialog;
     private Bundle bundle;
     String baseurl ="http://172.24.41.170"; // destino del host donde se consumirán los datos
     @Override
@@ -133,16 +130,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
 
 
-        //Se crea el textView necesario para poder abrir el dialog de recuperacion de contraseña
-        TextView forgetPasswordTV = (TextView) findViewById(R.id.forget_passwordTV);
-        forgetPasswordTV.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager manager =  getSupportFragmentManager();
-                recoveryDialog = new RecoveryDialog();
-                recoveryDialog.show(manager, "Recuperación de Contraseña");
-            }
-        });
     }
 
 
@@ -152,7 +139,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * @param pin (obtenido de mPasswordView)
      * */
     private boolean verifyStudent(String carne, int pin){
-        final estudiante estudiante = new estudiante(carne,pin);
+        final estudiante estudiante = new estudiante(carne,String.valueOf(pin));
         final int state[] = new int[1]; //esto es creado para poder ser accesado desde el lambda
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseurl)
@@ -362,15 +349,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         carnetTextView.setAdapter(adapter);
-    }
-
-    /**
-     * Método encargado de manejar el handler del btn cancelar en el recoveryDialog
-     * @param view Button
-     * Se debe hacer un cast al view
-     * */
-    public void OnClickCancel(View view) {
-        recoveryDialog.getActivity().finish();
     }
 
 
