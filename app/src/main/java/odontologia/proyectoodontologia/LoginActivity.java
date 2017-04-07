@@ -138,8 +138,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * @param carne (obtenido de carnetTextView)
      * @param pin (obtenido de mPasswordView)
      * */
-    private boolean verifyStudent(String carne, int pin){
-        final estudiante estudiante = new estudiante(carne,String.valueOf(pin));
+    private boolean verifyStudent(final String carne, int pin){
+        final Student[] loggedStudent = new Student[1];
         final int state[] = new int[1]; //esto es creado para poder ser accesado desde el lambda
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseurl)
@@ -152,8 +152,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             @Override
             public void onResponse(Call<estudiante> call, Response<estudiante> response) {
-                if(response.body().getCarne().equals(estudiante.getCarne()))
+                if(response.body().getCarne().equals(carne)) {
                     state[0] = 1;
+                    loggedStudent[0] = new Student(response.body().getCarne(), response.body().getPin(), response.body().getBeca(),
+                            response.body().getNombre(), response.body().getPrimerApellido(), response.body().getSegundoApellido(),
+                            response.body().getCarrera(), response.body().getEstadoCivil(), response.body().getCarneCCSS(),
+                            response.body().getFechaNacimiento(), response.body().getCedula(), response.body().getDireccionFamiliar(),
+                            response.body().getTelefono());
+                }
             }
 
             @Override

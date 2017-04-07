@@ -4,7 +4,7 @@ package odontologia.proyectoodontologia;
  * Created by Justin Cast on 11/3/2017
  */
 
-public class estudiante {
+public  class estudiante {
     private String beca;
     private String primerApellido;
     private String segundoApellido;
