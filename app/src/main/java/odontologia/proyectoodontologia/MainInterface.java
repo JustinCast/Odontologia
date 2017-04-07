@@ -17,11 +17,15 @@ import retrofit2.http.Path;
 
 public interface MainInterface {
     @GET("/estudiantes/estudiante/{carne}/{pin}")
-    Call<estudiante> getStudent(@Path("carne") String carne, @Path("pin") int pin);
+    Call<estudiante> getStudent(@Path("carne") String carne, @Path("pin") String pin);
+
     @POST("/estudiantes/estudiante/{carne}/{pin}") void verifyStudent(Callback<ArrayList<estudiante>> usersCallBack);
 
+    //@GET("users/list")
+    @GET("/server-odonto/enfermedades")
+    Call<enfermedad> GetStudentInformation();
+
+    /*void GetStudentInformation(Callback<ArrayList<estudiante>>usersCallback);
     @GET("/estudiantes")
-    void GetStudentInformation(Callback<ArrayList<estudiante>>usersCallback);
-    @GET("/estudiantes")
-    Call<estudiante> getStudent();
+    Call<estudiante> getStudent();*/
 }

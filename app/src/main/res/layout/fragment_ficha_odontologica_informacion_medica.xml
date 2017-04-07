@@ -43,6 +43,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:id="@+id/recent_physical_test_cb"/>
 
                 <CheckBox
@@ -51,6 +52,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:id="@+id/asthma_cb" />
             </LinearLayout>
 
@@ -65,6 +67,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:id="@+id/heart_diseases_cb" />
 
                 <CheckBox
@@ -73,6 +76,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:id="@+id/hepatitis_cb" />
             </LinearLayout>
 
@@ -87,6 +91,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:id="@+id/low_blood_pressure_cb" />
 
                 <CheckBox
@@ -95,6 +100,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:id="@+id/nephrosis_cb" />
             </LinearLayout>
 
@@ -109,6 +115,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:id="@+id/high_blood_pressure_cb" />
 
                 <CheckBox
@@ -117,6 +124,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:id="@+id/rheumatic_fever_cb" />
             </LinearLayout>
 
@@ -130,6 +138,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:id="@+id/circulatory_diseases_cb" />
                 <CheckBox
                     android:text="@string/epilepsy"
@@ -137,6 +146,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:id="@+id/epilepsy_cb" />
             </LinearLayout>
 
@@ -151,6 +161,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:id="@+id/pain_in_anditive_region_cb" />
 
                 <CheckBox
@@ -159,6 +170,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:id="@+id/venereal_diseases_cb" />
             </LinearLayout>
 
@@ -173,6 +185,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:id="@+id/excessive_bleeding_cb" />
 
                 <CheckBox
@@ -181,6 +194,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:id="@+id/thyroid_gland_disorders_cb" />
             </LinearLayout>
 
@@ -195,6 +209,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:id="@+id/any_allergy_cb" />
 
                 <CheckBox
@@ -203,6 +218,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight= "1"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:id="@+id/allergy_antibiotics_cb" />
             </LinearLayout>
 
@@ -216,6 +232,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:id="@+id/bleeding_gums_cb" />
             </LinearLayout>
 

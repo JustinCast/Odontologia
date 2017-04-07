@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
              * */
             @Override
             public void onClick(View view) {
-                if(verifyStudent(carnetTextView.getText().toString(),Integer.parseInt(mPasswordView.getText().toString()))){
+                if(verifyStudent(carnetTextView.getText().toString(),mPasswordView.getText().toString())){
                     Toast.makeText(getApplicationContext(), "Inicio de sesión exitoso", Toast.LENGTH_LONG).show();
                     startActivity(MainActivityIntent);
                 }else
@@ -151,7 +151,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * @param carne (obtenido de carnetTextView)
      * @param pin (obtenido de mPasswordView)
      * */
-    private boolean verifyStudent(String carne, int pin){
+    private boolean verifyStudent(String carne, String pin){
         final estudiante estudiante = new estudiante(carne,pin);
         final int state[] = new int[1]; //esto es creado para poder ser accesado desde el lambda
         Retrofit retrofit = new Retrofit.Builder()
