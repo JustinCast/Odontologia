@@ -17,7 +17,7 @@ import retrofit2.http.Path;
 
 public interface MainInterface {
     @GET("/estudiantes/estudiante/{carne}/{pin}")
-    Call<estudiante> getStudent(@Path("carne") String carne, @Path("pin") String pin);
+    Call<estudiante> getStudent(@Path("carne") String carne, @Path("pin") int pin);
 
     @POST("/estudiantes/estudiante/{carne}/{pin}") void verifyStudent(Callback<ArrayList<estudiante>> usersCallBack);
 

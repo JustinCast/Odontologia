@@ -14,10 +14,12 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -71,7 +73,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
     private Bundle bundle;
-    String baseurl ="http://172.24.41.170"; // destino del host donde se consumirán los datos
+    String baseurl ="http://172.24.47.142"; // destino del host donde se consumirán los datos
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +105,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
              * */
             @Override
             public void onClick(View view) {
-                if(verifyStudent(carnetTextView.getText().toString(),mPasswordView.getText().toString())){
+                if(verifyStudent(carnetTextView.getText().toString(), mPasswordView.getText().toString())){
                     Toast.makeText(getApplicationContext(), "Inicio de sesión exitoso", Toast.LENGTH_LONG).show();
                     startActivity(MainActivityIntent);
                 }else
@@ -138,7 +140,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * @param carne (obtenido de carnetTextView)
      * @param pin (obtenido de mPasswordView)
      * */
-    private boolean verifyStudent(final String carne, String pin){
+    private boolean verifyStudent(String carne, String pin){
+        // es necesario crear una instancia con el fin de evitar un NULL_POINTER_EXCEPTION
+        final estudiante estudianteAuxiliar = new estudiante(carne, String.valueOf(pin));
         final Student[] loggedStudent = new Student[1];
         final int state[] = new int[1]; //esto es creado para poder ser accesado desde el lambda
         Retrofit retrofit = new Retrofit.Builder()
@@ -147,23 +151,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 .build();
 
         final MainInterface mainInterface = retrofit.create(MainInterface.class);//se crea una interface para acceder a los datos del endpoint
-        final Call<estudiante> call = mainInterface.getStudent(carne,pin);
+        final Call<estudiante> call = mainInterface.getStudent(carne, Integer.parseInt(pin));
         call.enqueue(new Callback<estudiante>() {
 
             @Override
             public void onResponse(Call<estudiante> call, Response<estudiante> response) {
-                if(response.body().getCarne().equals(carne)) {
+                Log.i("", "ENTRÓ");
+                state[0] = 1;
+                /*if(response.body().getCarne().equals(estudianteAuxiliar.getCarne())) {
                     state[0] = 1;
                     loggedStudent[0] = new Student(response.body().getCarne(), response.body().getPin(), response.body().getBeca(),
                             response.body().getNombre(), response.body().getPrimerApellido(), response.body().getSegundoApellido(),
                             response.body().getCarrera(), response.body().getEstadoCivil(), response.body().getCarneCCSS(),
                             response.body().getFechaNacimiento(), response.body().getCedula(), response.body().getDireccionFamiliar(),
                             response.body().getTelefono());
-                }
+                }*/
             }
 
             @Override
             public void onFailure(Call<estudiante> call, Throwable t) {
+                Log.i("","WDSFASAFGSDFG");
                 state[0] = 0;
             }
         });
