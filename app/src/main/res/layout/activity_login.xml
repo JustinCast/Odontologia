@@ -98,11 +98,4 @@
         </LinearLayout>
     </ScrollView>
 
-    <TextView
-        android:id="@+id/forget_passwordTV"
-        android:text="@string/forget_password"
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
 </LinearLayout>
