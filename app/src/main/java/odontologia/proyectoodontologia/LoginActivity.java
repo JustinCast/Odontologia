@@ -138,7 +138,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * @param carne (obtenido de carnetTextView)
      * @param pin (obtenido de mPasswordView)
      * */
-    private boolean verifyStudent(final String carne, int pin){
+    private boolean verifyStudent(final String carne, String pin){
         final Student[] loggedStudent = new Student[1];
         final int state[] = new int[1]; //esto es creado para poder ser accesado desde el lambda
         Retrofit retrofit = new Retrofit.Builder()
