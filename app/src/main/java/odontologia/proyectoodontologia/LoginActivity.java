@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
     private Bundle bundle;
-    String baseurl ="http://172.24.47.142"; // destino del host donde se consumirán los datos
+    String baseurl ="http://172.24.47.167"; // destino del host donde se consumirán los datos
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -156,7 +156,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             @Override
             public void onResponse(Call<estudiante> call, Response<estudiante> response) {
-                if(response.body().getCarne().equals(carne) && response.body().getPin().equals(pin)) {
+                if(response.body().getCarne().equals(carne) && response.body().getPin().equals(Integer.parseInt(pin))) {
                 Log.i("", "ENTRÓ");
                 state[0] = 1;
                     state[0] = 1;

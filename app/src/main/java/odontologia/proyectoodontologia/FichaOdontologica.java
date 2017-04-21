@@ -183,7 +183,7 @@ public class FichaOdontologica extends AppCompatActivity {
             allergy_antibiotics.setChecked(true);
             bleeding_gums.setChecked(false);
             others.setText("ya casi te termino");
-            String baseurl ="http://172.24.47.142";
+            String baseurl ="http://172.24.47.167";
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(baseurl)
                     .addConverterFactory(GsonConverterFactory.create())
