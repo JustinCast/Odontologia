@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
              * */
             @Override
             public void onClick(View view) {
-                if(verifyStudent(carnetTextView.getText().toString(), mPasswordView.getText().toString())){
+                if(verifyStudent(carnetTextView.getText().toString(),mPasswordView.getText().toString())){
                     Toast.makeText(getApplicationContext(), "Inicio de sesión exitoso", Toast.LENGTH_LONG).show();
                     startActivity(MainActivityIntent);
                 }else
@@ -119,8 +119,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
         //Creacion del btn ´SignUP'
-        final Button button = (Button) findViewById(R.id.btnSignUp);
-        button.setOnClickListener(new View.OnClickListener() {
+        final Button btnSignUp = (Button) findViewById(R.id.btnSignUp);
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 bundle = new Bundle();
                 bundle.putString("type", String.valueOf(0));
@@ -142,26 +142,27 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * */
     private boolean verifyStudent(final String carne, final String pin){
         // es necesario crear una instancia con el fin de evitar un NULL_POINTER_EXCEPTION
-        final estudiante estudianteAuxiliar = new estudiante(carne, String.valueOf(pin));
         final Student[] loggedStudent = new Student[1];
+        final estudiante estudiante = new estudiante(carne, Integer.parseInt(pin));
         final int state[] = new int[1]; //esto es creado para poder ser accesado desde el lambda
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseurl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         final MainInterface mainInterface = retrofit.create(MainInterface.class);//se crea una interface para acceder a los datos del endpoint
         final Call<estudiante> call = mainInterface.getStudent(carne, Integer.parseInt(pin));
         call.enqueue(new Callback<estudiante>() {
 
             @Override
+
             public void onResponse(Call<estudiante> call, Response<estudiante> response) {
-                if(response.body().getCarne().equals(carne) && response.body().getPin().equals(Integer.parseInt(pin))) {
+                if(response.body().getCarne().equals(carne)) {
                 Log.i("", "ENTRÓ");
                 state[0] = 1;
+
                     state[0] = 1;
                     Student student = Student.getInstance();
-                    student.FillInformation(response.body().getCarne(), response.body().getPin(), response.body().getBeca(),
+                    student.FillInformation(response.body().getCarne(), String.valueOf(response.body().getPin()), response.body().getBeca(),
                             response.body().getNombre(), response.body().getPrimerApellido(), response.body().getSegundoApellido(),
                             response.body().getCarrera(), response.body().getEstadoCivil(), response.body().getCarneCCSS(),
                             response.body().getFechaNacimiento(), response.body().getCedula(), response.body().getDireccionFamiliar(),
@@ -172,7 +173,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             @Override
             public void onFailure(Call<estudiante> call, Throwable t) {
-                Log.i("","WDSFASAFGSDFG");
+                Log.i("Error","Falló la auntenticación");
                 state[0] = 0;
             }
         });

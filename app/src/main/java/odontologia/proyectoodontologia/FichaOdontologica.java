@@ -121,6 +121,23 @@ public class FichaOdontologica extends AppCompatActivity {
             return fragment;
         }
 
+        /**
+         * metodo que llena los campos en el view con la informacion que tiene el objeto estudiante.
+         * los siguientes parametros son los atributos necesarios para el mostrar la informacion en la vista,
+         * los mismo son textviews
+         * @param scholarship
+         * @param name
+         * @param surname
+         * @param second_surname
+         * @param student_id
+         * @param major
+         * @param civil_status
+         * @param CCSS_id
+         * @param birth_date
+         * @param person_id
+         * @param family_address
+         * @param phone
+         */
         private void loadPersonalInformation(TextView scholarship,TextView name,TextView surname,
                                              TextView second_surname,TextView student_id,TextView major
                                             ,TextView civil_status,TextView CCSS_id,TextView birth_date
@@ -141,6 +158,10 @@ public class FichaOdontologica extends AppCompatActivity {
             phone.setText("87928971");
         }
 
+        /**
+         * obtiene o enlaza los textviews del layout con la logica de java
+         * @param rootView  es el layout en el que se encuentran los ids
+         */
         private void getAllIdsPersonalInformation(View rootView) {
             final TextView scholarship = (TextView) rootView.findViewById(R.id.scholarship_tv);
             final TextView name = (TextView) rootView.findViewById(R.id.name_tv);
@@ -158,6 +179,27 @@ public class FichaOdontologica extends AppCompatActivity {
                     ,civil_status, CCSS_id, birth_date, person_id, family_address, phone);
         }
 
+        /**
+         *
+         * @param recent_physical_test
+         * @param asthma
+         * @param heart_diseases
+         * @param hepatitis
+         * @param low_blood_pressure
+         * @param nephrosis
+         * @param high_blood_pressure
+         * @param rheumatic_fever
+         * @param circulatory_diseases
+         * @param epilepsy
+         * @param pain_in_anditive_region
+         * @param venereal_diseases
+         * @param excessive_bleeding
+         * @param thyroid_gland_disorders
+         * @param any_allergy
+         * @param allergy_antibiotics
+         * @param bleeding_gums
+         * @param others
+         */
         private void loadMedicalInformation(CheckBox recent_physical_test,CheckBox asthma,CheckBox heart_diseases, CheckBox hepatitis,
                                             CheckBox low_blood_pressure,CheckBox nephrosis,CheckBox high_blood_pressure,
                                             CheckBox rheumatic_fever,CheckBox circulatory_diseases,CheckBox epilepsy,

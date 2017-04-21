@@ -1,6 +1,9 @@
 package odontologia.proyectoodontologia;
 
-
+/**
+ * clase singleton estudiante necesaria para almacecnar la informacion recibida por parte del servidor
+ * que hace referencia al usuario ingresado en la aplicacion
+ */
 public class Student {
     private static Student instance = null;
     private String carne, pin, beca, nombre, apellido1, apellido2, carrera, estadoCivil, carneCCSS, fechaNacimiento, cedula,
@@ -22,6 +25,10 @@ public class Student {
         this.telefono = "";
     }
 
+    /**
+     * metodo singleton
+     * @return la instacia del estudiante
+     */
     public static Student getInstance() {
         if(instance == null) {
             instance = new Student();
@@ -29,6 +36,22 @@ public class Student {
         return instance;
     }
 
+    /**
+     * metodo que llena al estudiante instanciado, de informacion. para ello utiliza los parametros:
+     * @param carne
+     * @param pin
+     * @param beca
+     * @param nombre
+     * @param apellido1
+     * @param apellido2
+     * @param carrera
+     * @param estadoCivil
+     * @param carneCCSS
+     * @param fechaNacimiento
+     * @param cedula
+     * @param direccionFamiliar
+     * @param telefono
+     */
     public void FillInformation(String carne, String pin, String beca, String nombre, String apellido1, String apellido2,
                     String carrera, String estadoCivil, String carneCCSS, String fechaNacimiento, String cedula,
                     String direccionFamiliar, String telefono) {
@@ -46,6 +69,10 @@ public class Student {
         this.direccionFamiliar = direccionFamiliar;
         this.telefono = telefono;
     }
+
+    /**
+     * gets y sets de los atributos del estudiante
+     */
 
     public String getCarne() {
         return carne;

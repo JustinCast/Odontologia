@@ -17,14 +17,14 @@ public  class estudiante {
     private String cedula;
     private String direccionFamiliar;
     private String telefono;
-    private String pin;
+    private int pin;
 
-    public estudiante(String carne, String pin) {
+    public estudiante(String carne, int pin) {
         this.carne = carne;
         this.pin = pin;
     }
 
-    public estudiante(String beca, String primerApellido, String segundoApellido, String nombre, String carne, String carrera, String estadoCivil, String carneCCSS, String fechaNacimiento, String cedula, String direccionFamiliar, String telefono, String pin) {
+    public estudiante(String beca, String primerApellido, String segundoApellido, String nombre, String carne, String carrera, String estadoCivil, String carneCCSS, String fechaNacimiento, String cedula, String direccionFamiliar, String telefono, int pin) {
         this.beca = beca;
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
@@ -136,11 +136,11 @@ public  class estudiante {
         this.telefono = telefono;
     }
 
-    public String getPin() {
+    public int getPin() {
         return pin;
     }
 
-    public void setPin(String pin) {
+    public void setPin(int pin) {
         this.pin = pin;
     }
 }
