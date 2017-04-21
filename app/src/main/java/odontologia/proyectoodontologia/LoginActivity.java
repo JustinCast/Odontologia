@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
              * */
             @Override
             public void onClick(View view) {
-                if(verifyStudent(carnetTextView.getText().toString(), Integer.parseInt(mPasswordView.getText().toString()))){
+                if(verifyStudent(carnetTextView.getText().toString(),mPasswordView.getText().toString())){
                     Toast.makeText(getApplicationContext(), "Inicio de sesión exitoso", Toast.LENGTH_LONG).show();
                     startActivity(MainActivityIntent);
                 }else
@@ -140,14 +140,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * @param carne (obtenido de carnetTextView)
      * @param pin (obtenido de mPasswordView)
      * */
-<<<<<<< HEAD
-    private boolean verifyStudent(String carne, int pin){
-=======
     private boolean verifyStudent(final String carne, final String pin){
->>>>>>> origin/master
         // es necesario crear una instancia con el fin de evitar un NULL_POINTER_EXCEPTION
         final Student[] loggedStudent = new Student[1];
-        final estudiante estudiante = new estudiante(carne,pin);
+        final estudiante estudiante = new estudiante(carne, Integer.parseInt(pin));
         final int state[] = new int[1]; //esto es creado para poder ser accesado desde el lambda
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseurl)
@@ -155,21 +151,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 .build();
 
         final MainInterface mainInterface = retrofit.create(MainInterface.class);//se crea una interface para acceder a los datos del endpoint
-        final Call<estudiante> call = mainInterface.getStudent(carne, pin);
+        final Call<estudiante> call = mainInterface.getStudent(carne, Integer.parseInt(pin));
         call.enqueue(new Callback<estudiante>() {
 
             @Override
             public void onResponse(Call<estudiante> call, Response<estudiante> response) {
-                if(response.body().getCarne().equals(carne) && response.body().getPin().equals(pin)) {
+                if(response.body().getCarne().equals(carne) && response.body().getPin() == Integer.parseInt(pin)) {
                 Log.i("", "ENTRÓ");
                 state[0] = 1;
-<<<<<<< HEAD
-                /*if(response.body().getCarne().equals(estudiante.getCarne())) {
-=======
->>>>>>> origin/master
+
                     state[0] = 1;
                     Student student = Student.getInstance();
-                    student.FillInformation(response.body().getCarne(), response.body().getPin(), response.body().getBeca(),
+                    student.FillInformation(response.body().getCarne(), String.valueOf(response.body().getPin()), response.body().getBeca(),
                             response.body().getNombre(), response.body().getPrimerApellido(), response.body().getSegundoApellido(),
                             response.body().getCarrera(), response.body().getEstadoCivil(), response.body().getCarneCCSS(),
                             response.body().getFechaNacimiento(), response.body().getCedula(), response.body().getDireccionFamiliar(),
