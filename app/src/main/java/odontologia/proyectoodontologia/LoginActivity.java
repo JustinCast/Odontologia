@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
     private Bundle bundle;
-    String baseurl ="http://172.24.41.170"; // destino del host donde se consumirán los datos
+    String baseurl ="http://http://172.24.47.142"; // destino del host donde se consumirán los datos
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,7 +138,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * @param carne (obtenido de carnetTextView)
      * @param pin (obtenido de mPasswordView)
      * */
-    private boolean verifyStudent(final String carne, String pin){
+    private boolean verifyStudent(final String carne, final String pin){
         final Student[] loggedStudent = new Student[1];
         final int state[] = new int[1]; //esto es creado para poder ser accesado desde el lambda
         Retrofit retrofit = new Retrofit.Builder()
@@ -152,13 +152,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             @Override
             public void onResponse(Call<estudiante> call, Response<estudiante> response) {
-                if(response.body().getCarne().equals(carne)) {
+                if(response.body().getCarne().equals(carne) && response.body().getPin().equals(pin)) {
                     state[0] = 1;
-                    loggedStudent[0] = new Student(response.body().getCarne(), response.body().getPin(), response.body().getBeca(),
+                    Student student = Student.getInstance();
+                    student.FillInformation(response.body().getCarne(), response.body().getPin(), response.body().getBeca(),
                             response.body().getNombre(), response.body().getPrimerApellido(), response.body().getSegundoApellido(),
                             response.body().getCarrera(), response.body().getEstadoCivil(), response.body().getCarneCCSS(),
                             response.body().getFechaNacimiento(), response.body().getCedula(), response.body().getDireccionFamiliar(),
                             response.body().getTelefono());
+                    loggedStudent[0] = student;
                 }
             }
 
