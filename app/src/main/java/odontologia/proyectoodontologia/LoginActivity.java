@@ -140,7 +140,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * @param carne (obtenido de carnetTextView)
      * @param pin (obtenido de mPasswordView)
      * */
+<<<<<<< HEAD
     private boolean verifyStudent(String carne, int pin){
+=======
+    private boolean verifyStudent(final String carne, final String pin){
+>>>>>>> origin/master
         // es necesario crear una instancia con el fin de evitar un NULL_POINTER_EXCEPTION
         final Student[] loggedStudent = new Student[1];
         final estudiante estudiante = new estudiante(carne,pin);
@@ -156,16 +160,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             @Override
             public void onResponse(Call<estudiante> call, Response<estudiante> response) {
+                if(response.body().getCarne().equals(carne) && response.body().getPin().equals(pin)) {
                 Log.i("", "ENTRÓ");
                 state[0] = 1;
+<<<<<<< HEAD
                 /*if(response.body().getCarne().equals(estudiante.getCarne())) {
+=======
+>>>>>>> origin/master
                     state[0] = 1;
-                    loggedStudent[0] = new Student(response.body().getCarne(), response.body().getPin(), response.body().getBeca(),
+                    Student student = Student.getInstance();
+                    student.FillInformation(response.body().getCarne(), response.body().getPin(), response.body().getBeca(),
                             response.body().getNombre(), response.body().getPrimerApellido(), response.body().getSegundoApellido(),
                             response.body().getCarrera(), response.body().getEstadoCivil(), response.body().getCarneCCSS(),
                             response.body().getFechaNacimiento(), response.body().getCedula(), response.body().getDireccionFamiliar(),
                             response.body().getTelefono());
-                }*/
+                    loggedStudent[0] = student;
+                }
             }
 
             @Override

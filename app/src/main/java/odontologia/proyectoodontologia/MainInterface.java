@@ -19,11 +19,15 @@ public interface MainInterface {
     @GET("/estudiantes/estudiante/{carne}/{pin}")
     Call<estudiante> getStudent(@Path("carne") String carne, @Path("pin") int pin);
 
-    @POST("/estudiantes/estudiante/{carne}/{pin}") void verifyStudent(Callback<ArrayList<estudiante>> usersCallBack);
+    @GET("/estudiantes/estudiante")
+    Call<estudiante> getStudentMedicalInformation();
 
-    //@GET("users/list")
+
+    //@POST("/estudiantes/estudiante/{carne}/{pin}") void verifyStudent(Callback<ArrayList<estudiante>> usersCallBack);
+
+    /*@GET("users/list")
     @GET("/server-odonto/enfermedades")
-    Call<enfermedad> GetStudentInformation();
+    Call<enfermedad> GetStudentInformation();*/
 
     /*void GetStudentInformation(Callback<ArrayList<estudiante>>usersCallback);
     @GET("/estudiantes")

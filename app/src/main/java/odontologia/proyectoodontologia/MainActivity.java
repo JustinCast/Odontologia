@@ -211,6 +211,5 @@ public class MainActivity extends AppCompatActivity
                 listViewState = true;
             }
         });
-
     }
 }

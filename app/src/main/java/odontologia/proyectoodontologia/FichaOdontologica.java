@@ -190,7 +190,7 @@ public class FichaOdontologica extends AppCompatActivity {
                     .build();
             Toast.makeText(getContext(),"VA",Toast.LENGTH_SHORT).show();
             final MainInterface mainInterface = retrofit.create(MainInterface.class);//se crea una interface para acceder a los datos del endpoint
-            final Call<enfermedad> call = mainInterface.GetStudentInformation();
+            /*final Call<enfermedad> call = mainInterface.getStudentMedicalInformation();
             call.enqueue(new Callback<enfermedad>() {
                 @Override
                 public void onResponse(Call<enfermedad> call, Response<enfermedad> response) {
@@ -203,7 +203,7 @@ public class FichaOdontologica extends AppCompatActivity {
                 public void onFailure(Call<enfermedad> call, Throwable t) {
                     Toast.makeText(getContext(),"ERROR",Toast.LENGTH_SHORT).show();
                 }
-            });
+            });*/
             //bleeding_gums.setChecked(true);
         }
 
@@ -241,13 +241,11 @@ public class FichaOdontologica extends AppCompatActivity {
             if (getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
                 rootView = inflater.inflate(R.layout.fragment_ficha_odontologica_informacion_personal, container, false);
                 getAllIdsPersonalInformation(rootView);
-
             }
             else {
                 rootView = inflater.inflate(R.layout.fragment_ficha_odontologica_informacion_medica, container, false);
                 getAllIdsMedicalInformation(rootView);
                 final Button btnSave = (Button) rootView.findViewById(R.id.save);
-
             }
             return rootView;
         }
