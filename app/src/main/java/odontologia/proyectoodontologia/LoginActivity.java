@@ -150,23 +150,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         final MainInterface mainInterface = retrofit.create(MainInterface.class);//se crea una interface para acceder a los datos del endpoint
-        final Call<estudiante> call = mainInterface.getStudent(carne, Integer.parseInt(pin));
+        final Call<estudiante> call = mainInterface.getStudent();
+        Toast.makeText(getApplicationContext(), "asdfasdf", Toast.LENGTH_SHORT).show();
         call.enqueue(new Callback<estudiante>() {
 
             @Override
-
             public void onResponse(Call<estudiante> call, Response<estudiante> response) {
-                if(response.body().getCarne().equals(carne)) {
+                Toast.makeText(getApplicationContext(), "XD", Toast.LENGTH_SHORT).show();
+                if(response.body().getCarne().equals(carne) && response.body().getPin() == Integer.parseInt(pin)) {
                 Log.i("", "ENTRÓ");
                 state[0] = 1;
 
                     state[0] = 1;
                     Student student = Student.getInstance();
-                    student.FillInformation(response.body().getCarne(), String.valueOf(response.body().getPin()), response.body().getBeca(),
-                            response.body().getNombre(), response.body().getPrimerApellido(), response.body().getSegundoApellido(),
+                    /*student.FillInformation(response.body().getCarne(), String.valueOf(response.body().getPin()), response.body().getBeca(),
+                            response.body().getNombre(), response.body().getApellido1(), response.body().getApellido2(),
                             response.body().getCarrera(), response.body().getEstadoCivil(), response.body().getCarneCCSS(),
                             response.body().getFechaNacimiento(), response.body().getCedula(), response.body().getDireccionFamiliar(),
-                            response.body().getTelefono());
+                            response.body().getTelefono());*/
                     loggedStudent[0] = student;
                 }
             }

@@ -6,12 +6,12 @@ package odontologia.proyectoodontologia;
  */
 public class Student {
     private static Student instance = null;
-    private String carne, pin, beca, nombre, apellido1, apellido2, carrera, estadoCivil, carneCCSS, fechaNacimiento, cedula,
+    private String carne, beca, nombre, apellido1, apellido2, carrera, estadoCivil, carneCCSS, fechaNacimiento, cedula,
     direccionFamiliar, telefono;
-
+    private int pin;
     private Student() {
         this.carne = "";
-        this.pin = "";
+        this.pin = 0;
         this.beca = "";
         this.nombre = "";
         this.apellido1 = "";
@@ -52,7 +52,7 @@ public class Student {
      * @param direccionFamiliar
      * @param telefono
      */
-    public void FillInformation(String carne, String pin, String beca, String nombre, String apellido1, String apellido2,
+    public void FillInformation(String carne, int pin, String beca, String nombre, String apellido1, String apellido2,
                     String carrera, String estadoCivil, String carneCCSS, String fechaNacimiento, String cedula,
                     String direccionFamiliar, String telefono) {
         this.carne = carne;
@@ -82,11 +82,11 @@ public class Student {
         this.carne = carne;
     }
 
-    public String getPin() {
+    public int getPin() {
         return pin;
     }
 
-    public void setPin(String pin) {
+    public void setPin(int pin) {
         this.pin = pin;
     }
 
