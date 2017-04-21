@@ -23,6 +23,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,6 +48,7 @@ public class FichaOdontologica extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
+    //ArrayList<ProductListData> arrayListProducts = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,11 +195,13 @@ public class FichaOdontologica extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<enfermedad> call, Response<enfermedad> response) {
                     Toast.makeText(getContext(),"VIENE",Toast.LENGTH_SHORT).show();
+                    //int contador = 0;
+                    //while (contador < response.)
                 }
 
                 @Override
                 public void onFailure(Call<enfermedad> call, Throwable t) {
-                    Toast.makeText(getContext(),"MAMA",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"ERROR",Toast.LENGTH_SHORT).show();
                 }
             });*/
             //bleeding_gums.setChecked(true);
