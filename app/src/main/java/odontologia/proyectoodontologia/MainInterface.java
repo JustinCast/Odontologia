@@ -17,7 +17,7 @@ import retrofit2.http.Path;
 
 public interface MainInterface {
     @GET("/server-odonto/estudiantes/")
-    Call<estudiante> getStudent(/*@Path("carne") String carne, @Path("pin") int pin*/);
+    Call<estudiante> getStudent(@Path("carne") String carne, @Path("pin") int pin);
 
     @GET("/server-odonto/estudiantes")
     Call<estudiante> getStudentMedicalInformation();

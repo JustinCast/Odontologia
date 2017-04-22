@@ -143,31 +143,30 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private boolean verifyStudent(final String carne, final String pin){
         // es necesario crear una instancia con el fin de evitar un NULL_POINTER_EXCEPTION
         final Student[] loggedStudent = new Student[1];
-        final estudiante estudiante = new estudiante(carne, Integer.parseInt(pin));
+        final estudiante estudiantes = new estudiante(carne, Integer.parseInt(pin));
         final int state[] = new int[1]; //esto es creado para poder ser accesado desde el lambda
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseurl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         final MainInterface mainInterface = retrofit.create(MainInterface.class);//se crea una interface para acceder a los datos del endpoint
-        final Call<estudiante> call = mainInterface.getStudent();
-        Toast.makeText(getApplicationContext(), "asdfasdf", Toast.LENGTH_SHORT).show();
+        final Call<estudiante> call = mainInterface.getStudent("201500777", 9064);
         call.enqueue(new Callback<estudiante>() {
 
             @Override
+
             public void onResponse(Call<estudiante> call, Response<estudiante> response) {
-                Toast.makeText(getApplicationContext(), "XD", Toast.LENGTH_SHORT).show();
-                if(response.body().getCarne().equals(carne) && response.body().getPin() == Integer.parseInt(pin)) {
+                if(response.body().getCarne().equals(carne)) {
                 Log.i("", "ENTRÓ");
                 state[0] = 1;
 
                     state[0] = 1;
                     Student student = Student.getInstance();
-                    /*student.FillInformation(response.body().getCarne(), String.valueOf(response.body().getPin()), response.body().getBeca(),
-                            response.body().getNombre(), response.body().getApellido1(), response.body().getApellido2(),
+                    student.FillInformation(response.body().getCarne(), response.body().getPin(), response.body().getBeca(),
+                            response.body().getNombre(), response.body().getPrimerApellido(), response.body().getSegundoApellido(),
                             response.body().getCarrera(), response.body().getEstadoCivil(), response.body().getCarneCCSS(),
                             response.body().getFechaNacimiento(), response.body().getCedula(), response.body().getDireccionFamiliar(),
-                            response.body().getTelefono());*/
+                            response.body().getTelefono());
                     loggedStudent[0] = student;
                 }
             }
