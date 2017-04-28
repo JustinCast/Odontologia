@@ -98,6 +98,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         final Intent MainActivityIntent = new Intent(this, MainActivity.class);
 
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseurl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
 
             /**
@@ -105,12 +110,20 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
              * */
             @Override
             public void onClick(View view) {
-                if(verifyStudent(carnetTextView.getText().toString(),
-                        Integer.parseInt(mPasswordView.getText().toString()))){
-                    Toast.makeText(getApplicationContext(), "Inicio de sesión exitoso", Toast.LENGTH_LONG).show();
-                    startActivity(MainActivityIntent);
-                }else
-                    Toast.makeText(getApplicationContext(), "Error de incio de sesión", Toast.LENGTH_SHORT).show();
+                MainInterface mainInterface = retrofit.create(MainInterface.class);
+                Call<estudiante> call = mainInterface.getStudent(carnetTextView.getText().toString(),
+                        Integer.parseInt(mPasswordView.getText().toString()));
+                call.enqueue(new Callback<odontologia.proyectoodontologia.estudiante>() {
+                    @Override
+                    public void onResponse(Call<estudiante> call, Response<estudiante> response) {
+                       startActivity(MainActivityIntent);
+                    }
+
+                    @Override
+                    public void onFailure(Call<estudiante> call, Throwable t) {
+                        Toast.makeText(LoginActivity.this, "Error de inicio de sesión", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
@@ -133,39 +146,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
 
 
-    }
-
-
-    /**
-     * Metodo que devuelve un booleano indicando si el usuario existe o no
-     * @param carne (obtenido de carnetTextView)
-     * @param pin (obtenido de mPasswordView)
-     * */
-    private boolean verifyStudent( String carne, int pin){
-        // es necesario crear una instancia con el fin de evitar un NULL_POINTER_EXCEPTION
-        final Student[] loggedStudent = new Student[1];
-        final estudiante estudiante = new estudiante(carne, pin);
-        final int state[] = new int[1]; //esto es creado para poder ser accesado desde el lambda
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseurl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        MainInterface mainInterface = retrofit.create(MainInterface.class);//se crea una interface para acceder a los datos del endpoint
-        Call<estudiante> call = mainInterface.getStudent(carne, pin);
-
-        call.enqueue(new Callback<odontologia.proyectoodontologia.estudiante>() {
-            @Override
-            public void onResponse(Call<estudiante> call, Response<estudiante> response) {
-                state[0] = 1;
-            }
-
-            @Override
-            public void onFailure(Call<estudiante> call, Throwable t) {
-
-            }
-        });
-        return state[0] == 1;
-        //return state[0] == 1;//se retorna el estudiante
     }
 
     private void populateAutoComplete() {
