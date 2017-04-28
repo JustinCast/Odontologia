@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
     private Bundle bundle;
-    String baseurl ="http://172.24.47.167"; // destino del host donde se consumirán los datos
+    String baseurl ="http://172.24.44.66"; // destino del host donde se consumirán los datos
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,10 +153,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         MainInterface mainInterface = retrofit.create(MainInterface.class);//se crea una interface para acceder a los datos del endpoint
         Call<estudiante> call = mainInterface.getStudent(carne, pin);
 
-        call.enqueue(new Callback<estudiante>() {
+        call.enqueue(new Callback<odontologia.proyectoodontologia.estudiante>() {
             @Override
             public void onResponse(Call<estudiante> call, Response<estudiante> response) {
-
+                state[0] = 1;
             }
 
             @Override
