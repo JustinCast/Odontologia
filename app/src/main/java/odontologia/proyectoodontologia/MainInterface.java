@@ -23,6 +23,9 @@ public interface MainInterface {
     @POST("/server-odonto/Enfermedades/Estudiante/{carne}")
     Call<List<Enfermedad>> getStudentMedicalInformation(@Path("carne") String carne);
 
+    @POST("post")
+    Call<List<Enfermedad>> addBook(@Path("carne") String carne, @Body List<Enfermedad> enfermedad);
+
     //@POST("/estudiantes/estudiante/{carne}/{pin}") void verifyStudent(Callback<ArrayList<estudiante>> usersCallBack);
 
     /*@GET("users/list")
