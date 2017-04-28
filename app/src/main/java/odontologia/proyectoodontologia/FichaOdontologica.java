@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import layout.FichaOdontologicaInformacionMedica;
 import retrofit2.Call;
@@ -198,84 +199,68 @@ public class FichaOdontologica extends AppCompatActivity {
          * @param any_allergy
          * @param allergy_antibiotics
          * @param bleeding_gums
-         * @param others
          */
         private void loadMedicalInformation(CheckBox recent_physical_test,CheckBox asthma,CheckBox heart_diseases, CheckBox hepatitis,
                                             CheckBox low_blood_pressure,CheckBox nephrosis,CheckBox high_blood_pressure,
                                             CheckBox rheumatic_fever,CheckBox circulatory_diseases,CheckBox epilepsy,
                                             CheckBox pain_in_anditive_region, CheckBox venereal_diseases, CheckBox excessive_bleeding,
                                             CheckBox thyroid_gland_disorders, CheckBox any_allergy, CheckBox allergy_antibiotics,
-                                            CheckBox bleeding_gums, EditText others)
+                                            CheckBox bleeding_gums, String enfermedad)
         {
-            recent_physical_test.setChecked(true);
-            asthma.setChecked(true);
-            heart_diseases.setChecked(true);
-            hepatitis.setChecked(true);
-            low_blood_pressure.setChecked(true);
-            nephrosis.setChecked(true);
-            high_blood_pressure.setChecked(true);
-            rheumatic_fever.setChecked(true);
-            circulatory_diseases.setChecked(true);
-            epilepsy.setChecked(true);
-            pain_in_anditive_region.setChecked(true);
-            venereal_diseases.setChecked(true);
-            excessive_bleeding.setChecked(true);
-            thyroid_gland_disorders.setChecked(true);
-            any_allergy.setChecked(true);
-            allergy_antibiotics.setChecked(true);
-            bleeding_gums.setChecked(false);
-
-            /*String baseurl ="http://172.24.44.66";
-
-            final Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(baseurl)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            MainInterface mainInterface = retrofit.create(MainInterface.class);
-            Call<estudiante> call = mainInterface.getStudentMedicalInformation(student.getCarne());
-            call.enqueue(new Callback<odontologia.proyectoodontologia.estudiante>() {
-                @Override
-                public void onResponse(Call<estudiante> call, Response<estudiante> response) {
-                    Student student = Student.getInstance();
-                    student.FillInformation(response.body().getCarne(), response.body().getPin(), String.valueOf(response.body().getBecado()),
-                            response.body().getNombre(), response.body().getApe1(), response.body().getApe2(),
-                            response.body().getCarrera(), response.body().getEstadoCivil(), response.body().getCarneCCSS(),
-                            response.body().getFechaNacimiento(), response.body().getCedula(), response.body().getTelefono());
-                    startActivity(MainActivityIntent);
-                }
-
-                @Override
-                public void onFailure(Call<estudiante> call, Throwable t) {
-
-                }
-            });
-
-
-
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(baseurl)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            Toast.makeText(getContext(),"VA",Toast.LENGTH_SHORT).show();
-            final MainInterface mainInterface = retrofit.create(MainInterface.class);*///se crea una interface para acceder a los datos del endpoint
-            /*final Call<enfermedad> call = mainInterface.getStudentMedicalInformation();
-            call.enqueue(new Callback<enfermedad>() {
-                @Override
-                public void onResponse(Call<enfermedad> call, Response<enfermedad> response) {
-                    Toast.makeText(getContext(),"VIENE",Toast.LENGTH_SHORT).show();
-                    //int contador = 0;
-                    //while (contador < response.)
-                }
-
-                @Override
-                public void onFailure(Call<enfermedad> call, Throwable t) {
-                    Toast.makeText(getContext(),"ERROR",Toast.LENGTH_SHORT).show();
-                }
-            });*/
-            //bleeding_gums.setChecked(true);
+            if (enfermedad.equals("recent_physical_test")) {
+                recent_physical_test.setChecked(true);
+            }
+            else if (enfermedad.equals("asthma")) {
+                asthma.setChecked(true);
+            }
+            else if (enfermedad.equals("heart_diseases")) {
+                heart_diseases.setChecked(true);
+            }
+            else if (enfermedad.equals("hepatitis")) {
+                hepatitis.setChecked(true);
+            }
+            else if (enfermedad.equals("low_blood_pressure")) {
+                low_blood_pressure.setChecked(true);
+            }
+            else if (enfermedad.equals("nephrosis")) {
+                nephrosis.setChecked(true);
+            }
+            else if (enfermedad.equals("high_blood_pressure")) {
+                high_blood_pressure.setChecked(true);
+            }
+            else if (enfermedad.equals("rheumatic_fever")) {
+                rheumatic_fever.setChecked(true);
+            }
+            else if (enfermedad.equals("circulatory_diseases")) {
+                circulatory_diseases.setChecked(true);
+            }
+            else if (enfermedad.equals("epilepsy")) {
+                epilepsy.setChecked(true);
+            }
+            else if (enfermedad.equals("pain_in_anditive_region")) {
+                pain_in_anditive_region.setChecked(true);
+            }
+            else if (enfermedad.equals("venereal_diseases")) {
+                venereal_diseases.setChecked(true);
+            }
+            else if (enfermedad.equals("excessive_bleeding")) {
+                excessive_bleeding.setChecked(true);
+            }
+            else if (enfermedad.equals("thyroid_gland_disorders")) {
+                thyroid_gland_disorders.setChecked(true);
+            }
+            else if (enfermedad.equals("any_allergy")) {
+                any_allergy.setChecked(true);
+            }
+            else if (enfermedad.equals("allergy_antibiotics")) {
+                allergy_antibiotics.setChecked(true);
+            }
+            else if (enfermedad.equals("bleeding_gums")) {
+                bleeding_gums.setChecked(true);
+            }
         }
 
-        private void getAllIdsMedicalInformation(View rootView) {
+        private void getAllIdsMedical(View rootView, String enfermedad) {
             final CheckBox recent_physical_test = (CheckBox) rootView.findViewById(R.id.recent_physical_test_cb);
             final CheckBox asthma = (CheckBox) rootView.findViewById(R.id.asthma_cb);
             final CheckBox heart_diseases = (CheckBox) rootView.findViewById(R.id.heart_diseases_cb);
@@ -293,11 +278,35 @@ public class FichaOdontologica extends AppCompatActivity {
             final CheckBox any_allergy = (CheckBox) rootView.findViewById(R.id.any_allergy_cb);
             final CheckBox allergy_antibiotics = (CheckBox) rootView.findViewById(R.id.allergy_antibiotics_cb);
             final CheckBox bleeding_gums = (CheckBox) rootView.findViewById(R.id.bleeding_gums_cb);
-            final EditText others = (EditText) rootView.findViewById(R.id.others_et);
 
             loadMedicalInformation(recent_physical_test, asthma, heart_diseases,  hepatitis, low_blood_pressure, nephrosis,
                     high_blood_pressure, rheumatic_fever, circulatory_diseases, epilepsy, pain_in_anditive_region,
-                    venereal_diseases,  excessive_bleeding, thyroid_gland_disorders,  any_allergy, allergy_antibiotics, bleeding_gums, others);
+                    venereal_diseases,  excessive_bleeding, thyroid_gland_disorders,  any_allergy, allergy_antibiotics, bleeding_gums, enfermedad);
+        }
+
+        private void getAllMedicalInformation(final View rootView) {
+            String baseurl ="http://172.24.44.66";
+
+            final Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(baseurl)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            MainInterface mainInterface = retrofit.create(MainInterface.class);
+            Call<List<Enfermedad>> call = mainInterface.getStudentMedicalInformation(student.getCarne());
+            call.enqueue(new Callback<List<Enfermedad>>() {
+                @Override
+                public void onResponse(Call<List<Enfermedad>> call, Response<List<Enfermedad>> response) {
+                    for (int i = 0; i < response.body().size(); i++)
+                    {
+                        String a = response.body().get(i).getEnfermedad();
+                        getAllIdsMedical(rootView, a);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Enfermedad>> call, Throwable t) {
+                }
+            });
         }
 
         @Override
@@ -312,8 +321,14 @@ public class FichaOdontologica extends AppCompatActivity {
             }
             else {
                 rootView = inflater.inflate(R.layout.fragment_ficha_odontologica_informacion_medica, container, false);
-                getAllIdsMedicalInformation(rootView);
+                getAllMedicalInformation(rootView);
                 final Button btnSave = (Button) rootView.findViewById(R.id.save);
+                btnSave.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
             }
             return rootView;
         }
