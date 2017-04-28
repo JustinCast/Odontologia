@@ -5,9 +5,8 @@ package odontologia.proyectoodontologia;
  */
 
 public  class estudiante {
-    private String beca;
-    private String primerApellido;
-    private String segundoApellido;
+    private String ape1;
+    private String ape2;
     private String nombre;
     private String carne;
     private String carrera;
@@ -15,19 +14,22 @@ public  class estudiante {
     private String carneCCSS;
     private String fechaNacimiento;
     private String cedula;
-    private String direccionFamiliar;
+    //private String direccionFamiliar;
     private String telefono;
-    private int pin;
+    private String sexo;
+    private int pin, becado, edad, residente;
 
     public estudiante(String carne, int pin) {
         this.carne = carne;
         this.pin = pin;
     }
 
-    public estudiante(String beca, String primerApellido, String segundoApellido, String nombre, String carne, String carrera, String estadoCivil, String carneCCSS, String fechaNacimiento, String cedula, String direccionFamiliar, String telefono, int pin) {
-        this.beca = beca;
-        this.primerApellido = primerApellido;
-        this.segundoApellido = segundoApellido;
+    public estudiante(String carne, int pin, String cedula, String nombre, String ape1, String ape2, String carneCCSS,
+                      String telefono, String carrera, int becado, String sexo, int residente, int edad, String estadoCivil,
+                      String fechaNacimiento) {
+        this.becado = becado;
+        this.ape1 = ape1;
+        this.ape2 = ape2;
         this.nombre = nombre;
         this.carne = carne;
         this.carrera = carrera;
@@ -35,33 +37,35 @@ public  class estudiante {
         this.carneCCSS = carneCCSS;
         this.fechaNacimiento = fechaNacimiento;
         this.cedula = cedula;
-        this.direccionFamiliar = direccionFamiliar;
         this.telefono = telefono;
         this.pin = pin;
+        this.edad = edad;
+        this.sexo = sexo;
+        this.residente = residente;
     }
 
-    public String getBeca() {
-        return beca;
+    public int getBecado() {
+        return becado;
     }
 
-    public void setBeca(String beca) {
-        this.beca = beca;
+    public void setBecado(int becado) {
+        this.becado = becado;
     }
 
-    public String getPrimerApellido() {
-        return primerApellido;
+    public String getApe1() {
+        return ape1;
     }
 
-    public void setPrimerApellido(String primerApellido) {
-        this.primerApellido = primerApellido;
+    public void setApe1(String ape1) {
+        this.ape1 = ape1;
     }
 
-    public String getSegundoApellido() {
-        return segundoApellido;
+    public String getApe2() {
+        return ape2;
     }
 
-    public void setSegundoApellido(String segundoApellido) {
-        this.segundoApellido = segundoApellido;
+    public void setApe2(String ape2) {
+        this.ape2 = ape2;
     }
 
     public String getNombre() {
@@ -120,13 +124,13 @@ public  class estudiante {
         this.cedula = cedula;
     }
 
-    public String getDireccionFamiliar() {
+   /* public String getDireccionFamiliar() {
         return direccionFamiliar;
     }
 
     public void setDireccionFamiliar(String direccionFamiliar) {
         this.direccionFamiliar = direccionFamiliar;
-    }
+    }*/
 
     public String getTelefono() {
         return telefono;
@@ -142,5 +146,29 @@ public  class estudiante {
 
     public void setPin(int pin) {
         this.pin = pin;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public int getResidente() {
+        return residente;
+    }
+
+    public void setResidente(int residente) {
+        this.residente = residente;
     }
 }
