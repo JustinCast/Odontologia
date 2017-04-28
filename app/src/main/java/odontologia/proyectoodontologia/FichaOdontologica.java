@@ -198,14 +198,14 @@ public class FichaOdontologica extends AppCompatActivity {
          * @param any_allergy
          * @param allergy_antibiotics
          * @param bleeding_gums
-         * @param others
+         *
          */
         private void loadMedicalInformation(CheckBox recent_physical_test,CheckBox asthma,CheckBox heart_diseases, CheckBox hepatitis,
                                             CheckBox low_blood_pressure,CheckBox nephrosis,CheckBox high_blood_pressure,
                                             CheckBox rheumatic_fever,CheckBox circulatory_diseases,CheckBox epilepsy,
                                             CheckBox pain_in_anditive_region, CheckBox venereal_diseases, CheckBox excessive_bleeding,
                                             CheckBox thyroid_gland_disorders, CheckBox any_allergy, CheckBox allergy_antibiotics,
-                                            CheckBox bleeding_gums, EditText others)
+                                            CheckBox bleeding_gums)
         {
             recent_physical_test.setChecked(true);
             asthma.setChecked(true);
@@ -293,11 +293,10 @@ public class FichaOdontologica extends AppCompatActivity {
             final CheckBox any_allergy = (CheckBox) rootView.findViewById(R.id.any_allergy_cb);
             final CheckBox allergy_antibiotics = (CheckBox) rootView.findViewById(R.id.allergy_antibiotics_cb);
             final CheckBox bleeding_gums = (CheckBox) rootView.findViewById(R.id.bleeding_gums_cb);
-            final EditText others = (EditText) rootView.findViewById(R.id.others_et);
 
             loadMedicalInformation(recent_physical_test, asthma, heart_diseases,  hepatitis, low_blood_pressure, nephrosis,
                     high_blood_pressure, rheumatic_fever, circulatory_diseases, epilepsy, pain_in_anditive_region,
-                    venereal_diseases,  excessive_bleeding, thyroid_gland_disorders,  any_allergy, allergy_antibiotics, bleeding_gums, others);
+                    venereal_diseases,  excessive_bleeding, thyroid_gland_disorders,  any_allergy, allergy_antibiotics, bleeding_gums);
         }
 
         @Override
