@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -19,7 +20,10 @@ public interface MainInterface {
     Call<estudiante> getStudent(@Path("carne") String carne, @Path("pin") int pin);
 
     @GET("/server-odonto/estudiantes/")
-    Call<estudiante> getStudentMedicalInformation();
+    Call<estudiante> getStudentMedicalInformation(@Path("carne") String carne);
+
+    @POST("users/new")
+    Call<estudiante> createUser(@Body estudiante estudiante);
 
     //@POST("/estudiantes/estudiante/{carne}/{pin}") void verifyStudent(Callback<ArrayList<estudiante>> usersCallBack);
 

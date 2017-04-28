@@ -332,37 +332,6 @@
                 android:paddingLeft="@dimen/personal_and_medical_paddin">
 
                 <TextView
-                    android:text="@string/family_address"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView7"
-                    android:layout_weight="1"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="@dimen/personal_information_from_app"/>
-
-                <TextView
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/family_address_tv"
-                    android:layout_weight="2"
-                    android:textColor="@color/black_overlay"
-                    android:textSize="@dimen/personal_information_from_database"/>
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/color_separator_line"/>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/personal_medical_height"
-                android:paddingLeft="@dimen/personal_and_medical_paddin">
-
-                <TextView
                     android:text="@string/phone"
                     android:layout_gravity="center_vertical"
                     android:layout_width="0dp"

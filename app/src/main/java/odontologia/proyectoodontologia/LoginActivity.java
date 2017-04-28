@@ -116,6 +116,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 call.enqueue(new Callback<odontologia.proyectoodontologia.estudiante>() {
                     @Override
                     public void onResponse(Call<estudiante> call, Response<estudiante> response) {
+                        Student student = Student.getInstance();
+                        student.FillInformation(response.body().getCarne(), response.body().getPin(), String.valueOf(response.body().getBecado()),
+                                response.body().getNombre(), response.body().getApe1(), response.body().getApe2(),
+                                response.body().getCarrera(), response.body().getEstadoCivil(), response.body().getCarneCCSS(),
+                                response.body().getFechaNacimiento(), response.body().getCedula(), response.body().getTelefono());
                        startActivity(MainActivityIntent);
                     }
 
@@ -129,23 +134,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-        //Se crea el dialogo para recuperar la contraseña
-
-
-        //Creacion del btn ´SignUP'
-        final Button btnSignUp = (Button) findViewById(R.id.btnSignUp);
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                bundle = new Bundle();
-                bundle.putString("type", String.valueOf(0));
-                Intent intent = new Intent(getApplicationContext(), FichaOdontologica.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
-
-            }
-        });
-
-
     }
 
     private void populateAutoComplete() {

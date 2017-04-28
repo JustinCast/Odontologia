@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import layout.FichaOdontologicaInformacionMedica;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,6 +48,7 @@ public class FichaOdontologica extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private static Student student = Student.getInstance();
 
     //ArrayList<ProductListData> arrayListProducts = new ArrayList<>();
 
@@ -135,27 +137,26 @@ public class FichaOdontologica extends AppCompatActivity {
          * @param CCSS_id
          * @param birth_date
          * @param person_id
-         * @param family_address
          * @param phone
          */
         private void loadPersonalInformation(TextView scholarship,TextView name,TextView surname,
                                              TextView second_surname,TextView student_id,TextView major
                                             ,TextView civil_status,TextView CCSS_id,TextView birth_date
-                                            ,TextView person_id,TextView family_address,TextView phone)
+                                            ,TextView person_id,TextView phone)
         {
+            scholarship.setText(student.getBeca());
+            name.setText(student.getNombre());
+            surname.setText(student.getApellido1());
+            second_surname.setText(student.getApellido2());
+            student_id.setText(student.getCarne());
+            major.setText(student.getCarrera());
+            civil_status.setText(student.getEstadoCivil());
+            CCSS_id.setText(student.getCarneCCSS());
+            birth_date.setText(student.getFechaNacimiento());
+            person_id.setText(student.getCedula());
+            //family_address.setText(student."Jardines de Rohrmoser, Pavas, Condiminio Navarra # 25");
+            phone.setText(student.getTelefono());
 
-            scholarship.setText("Beca prestamo");
-            name.setText("Bryan");
-            surname.setText("Ruiz");
-            second_surname.setText("Bran");
-            student_id.setText("2014080589");
-            major.setText("Ingenieria en computación");
-            civil_status.setText("Soltero");
-            CCSS_id.setText("N / A");
-            birth_date.setText("14/08/1995");
-            person_id.setText("1-1615-0482");
-            family_address.setText("Jardines de Rohrmoser, Pavas, Condiminio Navarra # 25");
-            phone.setText("87928971");
         }
 
         /**
@@ -173,10 +174,9 @@ public class FichaOdontologica extends AppCompatActivity {
             final TextView CCSS_id = (TextView) rootView.findViewById(R.id.CCSS_id_tv);
             final TextView birth_date = (TextView) rootView.findViewById(R.id.birth_date_tv);
             final TextView person_id = (TextView) rootView.findViewById(R.id.person_id_tv);
-            final TextView family_address = (TextView) rootView.findViewById(R.id.family_address_tv);
             final TextView phone = (TextView) rootView.findViewById(R.id.phone_tv);
             loadPersonalInformation(scholarship, name, surname, second_surname, student_id, major
-                    ,civil_status, CCSS_id, birth_date, person_id, family_address, phone);
+                    ,civil_status, CCSS_id, birth_date, person_id, phone);
         }
 
         /**
@@ -224,14 +224,40 @@ public class FichaOdontologica extends AppCompatActivity {
             any_allergy.setChecked(true);
             allergy_antibiotics.setChecked(true);
             bleeding_gums.setChecked(false);
-            others.setText("ya casi te termino");
-            String baseurl ="http://172.24.47.167";
+
+            /*String baseurl ="http://172.24.44.66";
+
+            final Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(baseurl)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            MainInterface mainInterface = retrofit.create(MainInterface.class);
+            Call<estudiante> call = mainInterface.getStudentMedicalInformation(student.getCarne());
+            call.enqueue(new Callback<odontologia.proyectoodontologia.estudiante>() {
+                @Override
+                public void onResponse(Call<estudiante> call, Response<estudiante> response) {
+                    Student student = Student.getInstance();
+                    student.FillInformation(response.body().getCarne(), response.body().getPin(), String.valueOf(response.body().getBecado()),
+                            response.body().getNombre(), response.body().getApe1(), response.body().getApe2(),
+                            response.body().getCarrera(), response.body().getEstadoCivil(), response.body().getCarneCCSS(),
+                            response.body().getFechaNacimiento(), response.body().getCedula(), response.body().getTelefono());
+                    startActivity(MainActivityIntent);
+                }
+
+                @Override
+                public void onFailure(Call<estudiante> call, Throwable t) {
+
+                }
+            });
+
+
+
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(baseurl)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             Toast.makeText(getContext(),"VA",Toast.LENGTH_SHORT).show();
-            final MainInterface mainInterface = retrofit.create(MainInterface.class);//se crea una interface para acceder a los datos del endpoint
+            final MainInterface mainInterface = retrofit.create(MainInterface.class);*///se crea una interface para acceder a los datos del endpoint
             /*final Call<enfermedad> call = mainInterface.getStudentMedicalInformation();
             call.enqueue(new Callback<enfermedad>() {
                 @Override

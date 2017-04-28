@@ -237,13 +237,6 @@
             </LinearLayout>
 
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:hint="@string/others"
-                android:id="@+id/others_et" />
-
             <Button
                 android:text="@string/save_btn"
                 android:layout_width="match_parent"
