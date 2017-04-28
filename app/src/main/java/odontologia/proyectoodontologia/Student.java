@@ -7,7 +7,7 @@ package odontologia.proyectoodontologia;
 public class Student {
     private static Student instance = null;
     private String carne, beca, nombre, apellido1, apellido2, carrera, estadoCivil, carneCCSS, fechaNacimiento, cedula,
-    direccionFamiliar, telefono;
+    telefono;
     private int pin;
     private Student() {
         this.carne = "";
@@ -21,7 +21,6 @@ public class Student {
         this.carneCCSS = "";
         this.fechaNacimiento = "";
         this.cedula = "";
-        this.direccionFamiliar = "";
         this.telefono = "";
     }
 
@@ -49,12 +48,11 @@ public class Student {
      * @param carneCCSS
      * @param fechaNacimiento
      * @param cedula
-     * @param direccionFamiliar
      * @param telefono
      */
     public void FillInformation(String carne, int pin, String beca, String nombre, String apellido1, String apellido2,
                     String carrera, String estadoCivil, String carneCCSS, String fechaNacimiento, String cedula,
-                    String direccionFamiliar, String telefono) {
+                    String telefono) {
         this.carne = carne;
         this.pin = pin;
         this.beca = beca;
@@ -66,7 +64,6 @@ public class Student {
         this.carneCCSS = carneCCSS;
         this.fechaNacimiento = fechaNacimiento;
         this.cedula = cedula;
-        this.direccionFamiliar = direccionFamiliar;
         this.telefono = telefono;
     }
 
@@ -162,13 +159,6 @@ public class Student {
         this.cedula = cedula;
     }
 
-    public String getDireccionFamiliar() {
-        return direccionFamiliar;
-    }
-
-    public void setDireccionFamiliar(String direccionFamiliar) {
-        this.direccionFamiliar = direccionFamiliar;
-    }
 
     public String getTelefono() {
         return telefono;
