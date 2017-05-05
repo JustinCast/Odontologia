@@ -2,6 +2,7 @@ package odontologia.proyectoodontologia;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
@@ -14,11 +15,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -107,6 +110,8 @@ public class MainActivity extends AppCompatActivity
 
         ArrayAdapter<String> spinnerArrayAdapterDay =
                 new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerArrayDay);
+
+
         appointmentDaySpinner.setAdapter(spinnerArrayAdapterDay);
         appointmentDaySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -190,7 +195,7 @@ public class MainActivity extends AppCompatActivity
      * */
     private void chargeListView(){
         ListView listView = (ListView) findViewById(R.id.listView);
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice);
+        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_singlechoice);
 
         Calendar calendar = Calendar.getInstance(new Locale("es_ES"));
         calendar.add(Calendar.MONTH, -1);

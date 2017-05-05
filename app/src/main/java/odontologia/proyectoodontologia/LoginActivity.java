@@ -23,6 +23,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -77,7 +79,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
+        setTitle("Ingreso");
         // Set up the login form.
         carnetTextView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -99,10 +105,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         final Intent MainActivityIntent = new Intent(this, MainActivity.class);
 
 
-        final Retrofit retrofit = new Retrofit.Builder()
+        /*final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseurl)
                 .addConverterFactory(GsonConverterFactory.create())
-                .build();
+                .build();*/
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
 
             /**
@@ -110,7 +116,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
              * */
             @Override
             public void onClick(View view) {
-                MainInterface mainInterface = retrofit.create(MainInterface.class);
+                startActivity(MainActivityIntent);
+                /*MainInterface mainInterface = retrofit.create(MainInterface.class);
                 Call<estudiante> call = mainInterface.getStudent(carnetTextView.getText().toString(),
                         Integer.parseInt(mPasswordView.getText().toString()));
                 call.enqueue(new Callback<odontologia.proyectoodontologia.estudiante>() {
@@ -128,7 +135,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     public void onFailure(Call<estudiante> call, Throwable t) {
                         Toast.makeText(LoginActivity.this, "Error de inicio de sesión", Toast.LENGTH_SHORT).show();
                     }
-                });
+                });*/
             }
         });
 

@@ -9,7 +9,7 @@
         <item
             android:id="@+id/nav_odontological_sheet"
             android:icon="@drawable/ic_ficha_odontologica"
-            android:title="@string/odontological_sheet" />
+            android:title="@string/dental_tab" />
 
     </group>
 

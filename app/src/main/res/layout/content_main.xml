@@ -19,7 +19,6 @@
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="0.01"
         android:gravity="center"
         android:text="@string/days"
         android:textSize="@dimen/titles" />
@@ -31,19 +30,20 @@
         android:layout_height="0dp"
         android:id="@+id/appointment_day_spinner"
 
-        android:layout_weight="0.21" />
+        android:layout_weight="0.03" />
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.17"
-            android:text="@string/hours"
-            android:textAlignment="center"
-            android:textSize="@dimen/titles" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hours"
+        android:textAlignment="center"
+        android:textSize="@dimen/titles" />
 
 
     <ListView
+
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -51,15 +51,12 @@
         android:choiceMode="singleChoice" />
 
     <Button
-
+        android:textColor="@android:color/white"
         android:id="@+id/reserve_btn"
-        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="12dp"
-        android:layout_weight="0.05"
-        android:gravity="center"
         android:text="@string/reserve"
         android:theme="@style/MyButton" />
 </LinearLayout>
