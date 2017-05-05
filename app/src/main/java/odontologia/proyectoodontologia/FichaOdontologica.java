@@ -50,6 +50,7 @@ public class FichaOdontologica extends AppCompatActivity {
      */
     private ViewPager mViewPager;
     private static Student student = Student.getInstance();
+    private static List<Enfermedad> listaEnfermedades;
 
     //ArrayList<ProductListData> arrayListProducts = new ArrayList<>();
 
@@ -298,6 +299,7 @@ public class FichaOdontologica extends AppCompatActivity {
             call.enqueue(new Callback<List<Enfermedad>>() {
                 @Override
                 public void onResponse(Call<List<Enfermedad>> call, Response<List<Enfermedad>> response) {
+                    listaEnfermedades = response.body();
                     for (int i = 0; i < response.body().size(); i++)
                     {
                         String a = response.body().get(i).getEnfermedad();
