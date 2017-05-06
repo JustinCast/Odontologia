@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
     private Bundle bundle;
-    String baseurl ="http://172.24.44.66"; // destino del host donde se consumirán los datos
+    String baseurl ="http://172.24.43.50"; // destino del host donde se consumirán los datos
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,10 +105,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         final Intent MainActivityIntent = new Intent(this, MainActivity.class);
 
 
-        /*final Retrofit retrofit = new Retrofit.Builder()
+        final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseurl)
                 .addConverterFactory(GsonConverterFactory.create())
-                .build();*/
+                .build();
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
 
             /**
@@ -117,7 +117,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
                 startActivity(MainActivityIntent);
-                /*MainInterface mainInterface = retrofit.create(MainInterface.class);
+                MainInterface mainInterface = retrofit.create(MainInterface.class);
                 Call<estudiante> call = mainInterface.getStudent(carnetTextView.getText().toString(),
                         Integer.parseInt(mPasswordView.getText().toString()));
                 call.enqueue(new Callback<odontologia.proyectoodontologia.estudiante>() {
@@ -135,7 +135,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     public void onFailure(Call<estudiante> call, Throwable t) {
                         Toast.makeText(LoginActivity.this, "Error de inicio de sesión", Toast.LENGTH_SHORT).show();
                     }
-                });*/
+                });
             }
         });
 

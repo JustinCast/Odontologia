@@ -26,13 +26,7 @@ public interface MainInterface {
     @POST("post")
     Call<List<Enfermedad>> addBook(@Path("carne") String carne, @Body List<Enfermedad> enfermedad);
 
-    //@POST("/estudiantes/estudiante/{carne}/{pin}") void verifyStudent(Callback<ArrayList<estudiante>> usersCallBack);
+    @POST("/server-odonto/Enfermedades/Estudiante/{fecha}")
+    Call<String> getAvailableDateHours(@Path("fecha") String fecha);
 
-    /*@GET("users/list")
-    @GET("/server-odonto/enfermedades")
-    Call<Enfermedad> GetStudentInformation();*/
-
-    /*void GetStudentInformation(Callback<ArrayList<estudiante>>usersCallback);
-    @GET("/estudiantes")
-    Call<estudiante> getStudent();*/
 }

@@ -1,5 +1,6 @@
 package odontologia.proyectoodontologia;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -19,6 +20,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -32,6 +35,12 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
 /**
  * Clase encargada de manejar los distintos activities de la aplicacion
@@ -41,6 +50,10 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     //https://android.jlelse.eu/creating-an-intro-screen-for-your-app-using-viewpager-pagetransformer-9950517ea04f#.911dhxhbh
     boolean listViewState;
+    private int dia, mes, año;
+    private TextView txtdate;
+    private Button btnDates;
+    private DatePickerDialog datePickerDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTitle("Manejo Citas");
@@ -48,6 +61,35 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        txtdate = (TextView) findViewById(R.id.txtdate);
+
+        btnDates = (Button) findViewById(R.id.btnDate);
+
+        btnDates.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calendarShow();
+                String baseurl ="http://172.24.43.50";
+                final Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(baseurl)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                MainInterface mainInterface = retrofit.create(MainInterface.class);
+                Call<String> call = mainInterface.getAvailableDateHours(txtdate.getText().toString());
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        //aqui deberia obtener las horas disponibles para una fecha "X"
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
 
 
 
@@ -81,14 +123,26 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    private void calendarShow() {
+        Calendar c = Calendar.getInstance();
+        año = c.get(Calendar.YEAR);
+        mes = c.get(Calendar.MONTH);
+        dia = c.get(Calendar.DAY_OF_MONTH);
+        datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                txtdate.setText(dayOfMonth+"-"+(month+1)+"-"+year);
+            }
+        },año,mes,dia);
+        datePickerDialog.show();
+    }
+
     /**
      * Metodo encargado de llenar los spinner con sus respectivos datos
      * */
     private void loadSpinnerData(){
 
         //Spinner para el día
-        Spinner appointmentDaySpinner = (Spinner) findViewById(R.id.appointment_day_spinner);
-        appointmentDaySpinner.setPrompt("Dia");
 
         //es_ES
         Locale.setDefault(new Locale("es_ES"));
@@ -112,18 +166,6 @@ public class MainActivity extends AppCompatActivity
                 new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerArrayDay);
 
 
-        appointmentDaySpinner.setAdapter(spinnerArrayAdapterDay);
-        appointmentDaySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
     @Override

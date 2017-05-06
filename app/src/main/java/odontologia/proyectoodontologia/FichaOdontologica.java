@@ -156,7 +156,6 @@ public class FichaOdontologica extends AppCompatActivity {
             CCSS_id.setText(student.getCarneCCSS());
             birth_date.setText(student.getFechaNacimiento());
             person_id.setText(student.getCedula());
-            //family_address.setText(student."Jardines de Rohrmoser, Pavas, Condiminio Navarra # 25");
             phone.setText(student.getTelefono());
 
         }
@@ -235,7 +234,7 @@ public class FichaOdontologica extends AppCompatActivity {
             else if (enfermedad.equals("circulatory_diseases")) {
                 circulatory_diseases.setChecked(true);
             }
-            else if (enfermedad.equals("epilepsy")) {
+            else if (enfermedad.equals("Jajaj")) {
                 epilepsy.setChecked(true);
             }
             else if (enfermedad.equals("pain_in_anditive_region")) {
@@ -288,7 +287,7 @@ public class FichaOdontologica extends AppCompatActivity {
         }
 
         private void getAllMedicalInformation(final View rootView) {
-            String baseurl ="http://172.24.44.66";
+            String baseurl ="http://172.24.43.50";
 
             final Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(baseurl)
@@ -300,9 +299,9 @@ public class FichaOdontologica extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<List<Enfermedad>> call, Response<List<Enfermedad>> response) {
                     listaEnfermedades = response.body();
-                    for (int i = 0; i < response.body().size(); i++)
+                    for (int i = 0; i < listaEnfermedades.size(); i++)
                     {
-                        String a = response.body().get(i).getEnfermedad();
+                        String a = listaEnfermedades.get(i).getEnfermedad();
                         getAllIdsMedical(rootView, a);
                     }
                 }
