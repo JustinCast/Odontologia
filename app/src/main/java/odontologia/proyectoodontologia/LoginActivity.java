@@ -74,8 +74,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private Bundle bundle;
-    String baseurl ="http://172.24.43.50"; // destino del host donde se consumirán los datos
+    private ConnectionManager connectionManager = new ConnectionManager();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,10 +104,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         final Intent MainActivityIntent = new Intent(this, MainActivity.class);
 
 
-        final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseurl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
 
             /**
@@ -116,9 +111,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
              * */
             @Override
             public void onClick(View view) {
-                startActivity(MainActivityIntent);
-                MainInterface mainInterface = retrofit.create(MainInterface.class);
-                Call<estudiante> call = mainInterface.getStudent(carnetTextView.getText().toString(),
+                //startActivity(MainActivityIntent);
+                Call<estudiante> call = connectionManager.getMainInterface().getStudent(carnetTextView.getText().toString(),
                         Integer.parseInt(mPasswordView.getText().toString()));
                 call.enqueue(new Callback<odontologia.proyectoodontologia.estudiante>() {
                     @Override
@@ -128,6 +122,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 response.body().getNombre(), response.body().getApe1(), response.body().getApe2(),
                                 response.body().getCarrera(), response.body().getEstadoCivil(), response.body().getCarneCCSS(),
                                 response.body().getFechaNacimiento(), response.body().getCedula(), response.body().getTelefono());
+                        Toast.makeText(LoginActivity.this, "Bienvenido " + student.getNombre(), Toast.LENGTH_SHORT).show();
                        startActivity(MainActivityIntent);
                     }
 

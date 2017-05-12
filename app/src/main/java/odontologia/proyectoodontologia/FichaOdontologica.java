@@ -51,6 +51,7 @@ public class FichaOdontologica extends AppCompatActivity {
     private ViewPager mViewPager;
     private static Student student = Student.getInstance();
     private static List<Enfermedad> listaEnfermedades;
+    private static ConnectionManager connectionManager = new ConnectionManager();
 
     //ArrayList<ProductListData> arrayListProducts = new ArrayList<>();
 
@@ -281,20 +282,12 @@ public class FichaOdontologica extends AppCompatActivity {
 
             loadMedicalInformation(recent_physical_test, asthma, heart_diseases,  hepatitis, low_blood_pressure, nephrosis,
                     high_blood_pressure, rheumatic_fever, circulatory_diseases, epilepsy, pain_in_anditive_region,
-
-
                     venereal_diseases,  excessive_bleeding, thyroid_gland_disorders,  any_allergy, allergy_antibiotics, bleeding_gums, enfermedad);
         }
 
         private void getAllMedicalInformation(final View rootView) {
-            String baseurl ="http://172.24.43.50";
 
-            final Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(baseurl)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            MainInterface mainInterface = retrofit.create(MainInterface.class);
-            Call<List<Enfermedad>> call = mainInterface.getStudentMedicalInformation(student.getCarne());
+            Call<List<Enfermedad>> call = connectionManager.getMainInterface().getStudentMedicalInformation(student.getCarne());
             call.enqueue(new Callback<List<Enfermedad>>() {
                 @Override
                 public void onResponse(Call<List<Enfermedad>> call, Response<List<Enfermedad>> response) {

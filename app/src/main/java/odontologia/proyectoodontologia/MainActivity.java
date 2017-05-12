@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -52,8 +53,9 @@ public class MainActivity extends AppCompatActivity
     boolean listViewState;
     private int dia, mes, año;
     private TextView txtdate;
-    private Button btnDates;
+    private Button btnDates, reserveBtn;
     private DatePickerDialog datePickerDialog;
+    private ConnectionManager connectionManager = new ConnectionManager();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTitle("Manejo Citas");
@@ -70,27 +72,9 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 calendarShow();
-                String baseurl ="http://172.24.43.50";
-                final Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(baseurl)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                MainInterface mainInterface = retrofit.create(MainInterface.class);
-                Call<String> call = mainInterface.getAvailableDateHours(txtdate.getText().toString());
-                call.enqueue(new Callback<String>() {
-                    @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
-                        //aqui deberia obtener las horas disponibles para una fecha "X"
-                    }
 
-                    @Override
-                    public void onFailure(Call<String> call, Throwable t) {
-
-                    }
-                });
             }
         });
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -104,11 +88,12 @@ public class MainActivity extends AppCompatActivity
         loadSpinnerData();
 
         //Click Listener el boton reservar
-        Button reserveBtn = (Button) findViewById(R.id.reserve_btn);
+        reserveBtn = (Button) findViewById(R.id.reserve_btn);
+        reserveBtn.setVisibility(View.GONE);
         // Se crea el Toast de éxito
         final Toast successToast = Toast.makeText(this, R.string.succes_appointment,Toast.LENGTH_SHORT);
         final Toast errorToast = Toast.makeText(this, R.string.error_appointment, Toast.LENGTH_SHORT);
-        chargeListView();
+        //chargeListView();
 
         reserveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +108,21 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    private void getAvailableDates() {
+        Call<List<Horas>> call = connectionManager.getMainInterface().getAvailableDateHours(txtdate.getText().toString());
+        call.enqueue(new Callback<List<Horas>>() {
+            @Override
+            public void onResponse(Call<List<Horas>> call, Response<List<Horas>> response) {
+                chargeListView(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<Horas>> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "falla", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void calendarShow() {
         Calendar c = Calendar.getInstance();
         año = c.get(Calendar.YEAR);
@@ -131,7 +131,8 @@ public class MainActivity extends AppCompatActivity
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                txtdate.setText(dayOfMonth+"-"+(month+1)+"-"+year);
+                txtdate.setText((month+1)+"-"+dayOfMonth+"-"+year);
+                getAvailableDates();
             }
         },año,mes,dia);
         datePickerDialog.show();
@@ -192,7 +193,6 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -235,22 +235,15 @@ public class MainActivity extends AppCompatActivity
      * Método encargado de llenar el ListView del activity principal
      * Se carga con fechas
      * */
-    private void chargeListView(){
+    private void chargeListView(List<Horas> horas){
+        Toast.makeText(MainActivity.this, horas.toString(), Toast.LENGTH_SHORT).show();
         ListView listView = (ListView) findViewById(R.id.listView);
         ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_singlechoice);
-
-        Calendar calendar = Calendar.getInstance(new Locale("es_ES"));
-        calendar.add(Calendar.MONTH, -1);
-        calendar.add(Calendar.DAY_OF_MONTH, -1);
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSSZ");
-        String date;
-        for(int i = 1;i < 30; i++)
+        reserveBtn.setVisibility(View.VISIBLE);
+        for(int i = 0;i < horas.size(); i++)
         {
-            date = sdf.format(calendar.getTime());
-            listViewAdapter.add(date);
-            calendar.add(Calendar.HOUR_OF_DAY, 1);
+            listViewAdapter.add(horas.get(i).getHora());
         }
-
         listView.setAdapter(listViewAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -5,22 +5,22 @@ public class Enfermedad {
     private int idEnfermedad;
 
     public Enfermedad(String enfermedad, String descripcion, String tratamiento, int idEnfermedad) {
-        Enfermedad = enfermedad;
+        this.Enfermedad = enfermedad;
         this.descripcion = descripcion;
         this.tratamiento = tratamiento;
         this.idEnfermedad = idEnfermedad;
     }
 
     public String getEnfermedad() {
-        return Enfermedad;
+        return this.Enfermedad;
     }
 
     public void setEnfermedad(String enfermedad) {
-        Enfermedad = enfermedad;
+        this.Enfermedad = enfermedad;
     }
 
     public String getDescripcion() {
-        return descripcion;
+        return this.descripcion;
     }
 
     public void setDescripcion(String descripcion) {
@@ -28,7 +28,7 @@ public class Enfermedad {
     }
 
     public String getTratamiento() {
-        return tratamiento;
+        return this.tratamiento;
     }
 
     public void setTratamiento(String tratamiento) {
@@ -36,7 +36,7 @@ public class Enfermedad {
     }
 
     public int getIdEnfermedad() {
-        return idEnfermedad;
+        return this.idEnfermedad;
     }
 
     public void setIdEnfermedad(int idEnfermedad) {

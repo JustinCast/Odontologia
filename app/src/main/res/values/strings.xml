@@ -29,6 +29,7 @@
     <string name="surname">Primer Apellido:</string>
     <string name="second_surname">Segundo Apellido:</string>
     <string name="name">Nombre:</string>
+    <string name="noDates">No hay fecha seleccionada.</string>
     <string name="student_id">Carné:</string>
     <string name="major">Carrera:</string>
     <string name="civil_status">Estado Civil:</string>

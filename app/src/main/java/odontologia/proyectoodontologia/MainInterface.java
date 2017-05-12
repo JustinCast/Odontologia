@@ -26,7 +26,6 @@ public interface MainInterface {
     @POST("post")
     Call<List<Enfermedad>> addBook(@Path("carne") String carne, @Body List<Enfermedad> enfermedad);
 
-    @POST("/server-odonto/Enfermedades/Estudiante/{fecha}")
-    Call<String> getAvailableDateHours(@Path("fecha") String fecha);
-
+    @GET("/server-odonto/Horas/{fecha}")
+    Call<List<Horas>> getAvailableDateHours(@Path("fecha") String fecha);
 }
