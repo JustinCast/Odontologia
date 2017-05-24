@@ -237,12 +237,14 @@
             </LinearLayout>
 
 
-            <Button
-                android:text="@string/save_btn"
-                android:layout_width="match_parent"
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/save"
-                android:textSize="14sp"/>
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@android:drawable/ic_menu_save" />
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

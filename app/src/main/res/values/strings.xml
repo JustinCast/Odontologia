@@ -25,6 +25,10 @@
     <string name="action_settings">Configuración</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
+    <string name="contactBanner">Enfermeria TEC San Carlos</string>
+    <string name="contactPhoneInformation">Tel. 2401-3101</string>
+    <string name="contactNice">El area de Salud está presta a atender cualquier consulta. Comuniquese con nosotros
+                                y con mucho gusto le atenderemos!</string>
     <string name="dental_tab">Ficha Odontológica</string>
     <string name="surname">Primer Apellido:</string>
     <string name="second_surname">Segundo Apellido:</string>

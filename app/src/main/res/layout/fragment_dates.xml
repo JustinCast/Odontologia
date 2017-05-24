@@ -1,0 +1,102 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="layout.DatesFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:id="@+id/txtdate"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="20sp"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:id="@+id/btnDate"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/calendar"/>
+            </LinearLayout>
+
+            <View
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorPrimary"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hours"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/titles" />
+
+                <ListView
+
+                    android:id="@+id/listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:choiceMode="singleChoice" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:text="@string/noDates"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/noDates"
+                    android:rotation="-50"
+                    android:layout_height="300dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"/>
+
+                <Button
+                    android:textColor="@android:color/white"
+                    android:id="@+id/reserve_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/reserve"
+                    android:theme="@style/MyButton" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

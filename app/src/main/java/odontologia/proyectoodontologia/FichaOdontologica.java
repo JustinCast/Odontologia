@@ -319,10 +319,10 @@ public class FichaOdontologica extends AppCompatActivity {
             else {
                 rootView = inflater.inflate(R.layout.fragment_ficha_odontologica_informacion_medica, container, false);
                 getAllMedicalInformation(rootView);
-                final Button btnSave = (Button) rootView.findViewById(R.id.save);
-                btnSave.setOnClickListener(new View.OnClickListener() {
+                FloatingActionButton btnAgregarMedicamento = (FloatingActionButton) rootView.findViewById(R.id.btnSave);
+                btnAgregarMedicamento.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
+                    public void onClick(View view) {
 
                     }
                 });

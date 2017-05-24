@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_appointments"
-            android:icon="@drawable/ic_citas"
-            android:title="@string/appointments" />
-        <item
-            android:id="@+id/nav_odontological_sheet"
-            android:icon="@drawable/ic_ficha_odontologica"
-            android:title="@string/dental_tab" />
 
-    </group>
+    <item android:title="General">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_appointments"
+                    android:icon="@drawable/ic_citas"
+                    android:title="@string/appointments" />
+                <item
+                    android:id="@+id/nav_odontological_sheet"
+                    android:icon="@drawable/ic_ficha_odontologica"
+                    android:title="@string/dental_tab" />
+            </group>
+        </menu>
+    </item>
 
-    <group android:checkableBehavior="single">
-        <item android:title="@string/about">
-            <menu>
+
+
+    <item android:title="Más información">
+        <menu>
+            <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_contacts"
                     android:icon="@drawable/ic_contactos"
@@ -24,14 +30,14 @@
                     android:id="@+id/nav_developers"
                     android:icon="@drawable/ic_desarrolladores"
                     android:title="@string/developers" />
-            </menu>
-        </item>
-    </group>
+            </group>
+        </menu>
+    </item>
+
     <item
         android:id="@+id/log_out"
         android:icon="@drawable/ic_logout"
         android:title="@string/log_out">
-
     </item>
 
 

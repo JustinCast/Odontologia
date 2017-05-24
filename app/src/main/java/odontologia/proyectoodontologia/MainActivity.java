@@ -36,6 +36,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import layout.ContactsFragment;
+import layout.DatesFragment;
+import layout.DevelopersFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -56,15 +59,16 @@ public class MainActivity extends AppCompatActivity
     private Button btnDates, reserveBtn;
     private DatePickerDialog datePickerDialog;
     private ConnectionManager connectionManager = new ConnectionManager();
+    NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("Manejo Citas");
+        //setTitle("Manejo Citas");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        txtdate = (TextView) findViewById(R.id.txtdate);
+        /*txtdate = (TextView) findViewById(R.id.txtdate);
 
         btnDates = (Button) findViewById(R.id.btnDate);
 
@@ -74,7 +78,7 @@ public class MainActivity extends AppCompatActivity
                 calendarShow();
 
             }
-        });
+        });*/
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -83,11 +87,11 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        loadSpinnerData();
+        //loadSpinnerData();
 
-        //Click Listener el boton reservar
+        /*//Click Listener el boton reservar
         reserveBtn = (Button) findViewById(R.id.reserve_btn);
         reserveBtn.setVisibility(View.GONE);
         // Se crea el Toast de éxito
@@ -104,11 +108,15 @@ public class MainActivity extends AppCompatActivity
                 else
                     errorToast.show();
             }
-        });
+        });*/
+
+        DatesFragment datesFragment = new DatesFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.content_main, datesFragment).commit();
 
     }
 
-    private void getAvailableDates() {
+    /*private void getAvailableDates() {
         Call<List<Horas>> call = connectionManager.getMainInterface().getAvailableDateHours(txtdate.getText().toString());
         call.enqueue(new Callback<List<Horas>>() {
             @Override
@@ -136,12 +144,12 @@ public class MainActivity extends AppCompatActivity
             }
         },año,mes,dia);
         datePickerDialog.show();
-    }
+    }*/
 
     /**
      * Metodo encargado de llenar los spinner con sus respectivos datos
      * */
-    private void loadSpinnerData(){
+/*    private void loadSpinnerData(){
 
         //Spinner para el día
 
@@ -167,7 +175,7 @@ public class MainActivity extends AppCompatActivity
                 new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerArrayDay);
 
 
-    }
+    }*/
 
     @Override
     public void onBackPressed() {
@@ -207,8 +215,12 @@ public class MainActivity extends AppCompatActivity
 
         //Activity 'Citas'
         if (id == R.id.nav_appointments) {
-            Intent appointmentIntent = new Intent(this, MainActivity.class);
-            startActivity(appointmentIntent);
+            /*Intent appointmentIntent = new Intent(this, MainActivity.class);
+            startActivity(appointmentIntent);*/
+            DatesFragment datesFragment = new DatesFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.content_main, datesFragment).commit();
+
 
         //Activity 'Ficha Odontologica'
         }else if (id == R.id.nav_odontological_sheet) {
@@ -216,9 +228,16 @@ public class MainActivity extends AppCompatActivity
             startActivity(odontologicalSheet);
 
         //Activity 'Desarrolladores'
+        }else if (id == R.id.nav_contacts) {
+            ContactsFragment contactsFragment = new ContactsFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.content_main, contactsFragment).commit();
         }else if (id == R.id.nav_developers) {
-            Intent developersActivity = new Intent(this, DevelopersActivity.class);
-            startActivity(developersActivity);
+            /*Intent developersActivity = new Intent(this, DevelopersActivity.class);
+            startActivity(developersActivity);*/
+            DevelopersFragment developersFragment = new DevelopersFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.content_main, developersFragment).commit();
 
         //Dialog para salir de la aplicación
         }else if (id == R.id.log_out) {
@@ -228,6 +247,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
