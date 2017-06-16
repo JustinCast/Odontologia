@@ -16,6 +16,9 @@
     </string>
     <string name="sign_up">Registrarse</string>
     <string name="back">Back</string>
+    <string name="succes">Cita reservada con exito.</string>
+    <string name="availableHours">No hay horas disponibles para la fecha seleccionada, intente con otra fecha.</string>
+    <string name="connectingError">Error de conexión, intentelo nuevamente.</string>
     <string name="forget_password">Olvidé mi contraseña</string>
     <string name="success_introduction">Email ingresado con exito</string>
     <string name="password_recovery">Recuperación de Contraseña</string>
@@ -25,15 +28,13 @@
     <string name="action_settings">Configuración</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
-    <string name="contactBanner">Enfermeria TEC San Carlos</string>
-    <string name="contactPhoneInformation">Tel. 2401-3101</string>
+    <string name="contactBanner">Odontología TEC San Carlos</string>
     <string name="contactNice">El area de Salud está presta a atender cualquier consulta. Comuniquese con nosotros
                                 y con mucho gusto le atenderemos!</string>
     <string name="dental_tab">Ficha Odontológica</string>
     <string name="surname">Primer Apellido:</string>
     <string name="second_surname">Segundo Apellido:</string>
     <string name="name">Nombre:</string>
-    <string name="noDates">No hay fecha seleccionada.</string>
     <string name="student_id">Carné:</string>
     <string name="major">Carrera:</string>
     <string name="civil_status">Estado Civil:</string>
@@ -68,6 +69,8 @@
     <string name="succes_appointment">Cita reservada con éxito</string>
     <string name="appointments">Citas</string>
     <string name="days">Días</string>
+    <string name="DateSelected">Ya tienes una cita pendiente.</string>
+    <string name="noDateSelected">No hay fecha seleccionada.</string>
     <string name="appointment_registry">Registro de citas</string>
     <string name="error_appointment"> Seleccione el día y la hora</string>
     <string name="contacts">Contactos</string>

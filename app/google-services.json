@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "378161580095",
-    "firebase_url": "https://odontologia-c92c9.firebaseio.com",
-    "project_id": "odontologia-c92c9",
-    "storage_bucket": "odontologia-c92c9.appspot.com"
+    "project_number": "353627557534",
+    "firebase_url": "https://odontologia-8af94.firebaseio.com",
+    "project_id": "odontologia-8af94",
+    "storage_bucket": "odontologia-8af94.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:378161580095:android:f9f6ae69ebe449db",
+        "mobilesdk_app_id": "1:353627557534:android:f9f6ae69ebe449db",
         "android_client_info": {
           "package_name": "odontologia.proyectoodontologia"
         }
       },
       "oauth_client": [
         {
-          "client_id": "378161580095-7kev2dbjinsopo7sd3o015gbmh18m4no.apps.googleusercontent.com",
+          "client_id": "353627557534-7k2jkg8pc9ung0tg51vasekj90gc8c3r.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDXzb8Ep7-6Uu4J1j8TI4F4aTIlvXDwpos"
+          "current_key": "AIzaSyD08f-B3ch-edOe2HbNo_7a97Eqe9Ks1K4"
         }
       ],
       "services": {

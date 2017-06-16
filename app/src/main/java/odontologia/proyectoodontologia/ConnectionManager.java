@@ -20,7 +20,7 @@ public class ConnectionManager
 
 
     public ConnectionManager() {
-        this.baseurl = "http://172.24.46.226";
+        this.baseurl = "http://172.24.44.205";
         this.retrofit = new Retrofit.Builder().baseUrl(baseurl).addConverterFactory(GsonConverterFactory.create()).build();
         this.mainInterface = retrofit.create(MainInterface.class);
     }

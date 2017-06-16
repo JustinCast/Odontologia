@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +20,11 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.List;
 
+import odontologia.proyectoodontologia.Cita;
 import odontologia.proyectoodontologia.ConnectionManager;
 import odontologia.proyectoodontologia.Horas;
-import odontologia.proyectoodontologia.MainActivity;
 import odontologia.proyectoodontologia.R;
+import odontologia.proyectoodontologia.Student;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,12 +34,16 @@ import retrofit2.Response;
  */
 public class DatesFragment extends Fragment {
     private int dia, mes, año;
-    private TextView txtdate, textView;
+    private TextView txtdate, txtHour, textView;
     private Button btnDates, reserveBtn;
     private DatePickerDialog datePickerDialog;
+    private static final String TAG = "OCVSample::Activity";
     private ConnectionManager connectionManager = new ConnectionManager();
     private View rootView;
-    boolean listViewState;
+    private boolean listViewState, permisoCita;
+    private String hora;
+    ListView listView;
+    private static Student student = Student.getInstance();
     public DatesFragment() {
         // Required empty public constructor
     }
@@ -51,35 +57,83 @@ public class DatesFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_dates, container, false);
         txtdate = (TextView) rootView.findViewById(R.id.txtdate);
         textView = (TextView) rootView.findViewById(R.id.textView);
+        txtHour = (TextView) rootView.findViewById(R.id.textView2);
+        txtHour.setVisibility(View.GONE);
 
+        getUserSelectedDate();
+        listView = (ListView) rootView.findViewById(R.id.listView);
+        listView.setVisibility(View.GONE);
         btnDates = (Button) rootView.findViewById(R.id.btnDate);
+        reserveBtn = (Button) rootView.findViewById(R.id.reserve_btn);
+        reserveBtn.setVisibility(View.GONE);
+
 
         btnDates.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calendarShow();
+                if (permisoCita == true) {
+                    calendarShow();
+                }
+                else {
+                    Snackbar.make(getActivity().getCurrentFocus(), R.string.DateSelected, Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
             }
         });
 
         //Click Listener el boton reservar
-        reserveBtn = (Button) rootView.findViewById(R.id.reserve_btn);
-        reserveBtn.setVisibility(View.GONE);
-        // Se crea el Toast de éxito
-        final Toast successToast = Toast.makeText(getActivity(), R.string.succes_appointment,Toast.LENGTH_SHORT);
-        final Toast errorToast = Toast.makeText(getActivity(), R.string.error_appointment, Toast.LENGTH_SHORT);
-        //chargeListView();
 
         reserveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println(((ListView) rootView.findViewById(R.id.listView)).getSelectedItem());
-                if(listViewState)
-                    successToast.show();
-                else
-                    errorToast.show();
+                Cita cita = new Cita(student.getCarne(),txtdate.getText().toString(), hora);
+                Call<Boolean> call = connectionManager.getMainInterface().setUserSelectedDate(cita, student.getCarne());
+                call.enqueue(new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                        Snackbar.make(getActivity().getCurrentFocus(), R.string.succes, Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                        reserveBtn.setVisibility(View.GONE);
+                        listView.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onFailure(Call<Boolean> call, Throwable t) {
+                        Snackbar.make(getActivity().getCurrentFocus(), R.string.connectingError, Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }
+                });
             }
         });
         return rootView;
+    }
+
+    private void getUserSelectedDate() {
+        Call<String> call = connectionManager.getMainInterface().getUserSelectedDate(student.getCarne());
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                validateUserDateInfo(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Snackbar.make(getActivity().getCurrentFocus(), R.string.connectingError, Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+    }
+
+    private void validateUserDateInfo(String carne) {
+
+        if (carne.equals("1")) {
+            textView.setText(R.string.DateSelected + "12/12/2017");
+            permisoCita = false;
+        }
+        else {
+            textView.setText(R.string.noDateSelected);
+            permisoCita = true;
+        }
     }
 
     private void getAvailableDates() {
@@ -93,8 +147,7 @@ public class DatesFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Horas>> call, Throwable t) {
-                Toast.makeText(getActivity(), "falla", Toast.LENGTH_SHORT).show();
-                Snackbar.make(getActivity().getCurrentFocus(), "Error de conexión, intentelo nuevamente.", Snackbar.LENGTH_LONG)
+                Snackbar.make(getActivity().getCurrentFocus(), R.string.connectingError, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -119,20 +172,27 @@ public class DatesFragment extends Fragment {
         datePickerDialog.show();
     }
 
-    private void chargeListView(List<Horas> horas){
-        Toast.makeText(getActivity(), horas.toString(), Toast.LENGTH_SHORT).show();
-        ListView listView = (ListView) rootView.findViewById(R.id.listView);
+    private void chargeListView(final List<Horas> horas){
+
         ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_singlechoice);
-        reserveBtn.setVisibility(View.VISIBLE);
         for(int i = 0;i < horas.size(); i++)
         {
             listViewAdapter.add(horas.get(i).getHora());
         }
         listView.setAdapter(listViewAdapter);
+        if (horas.size() > 0) {
+            txtHour.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.VISIBLE);
+        }
+        else {
+            textView.setText(R.string.availableHours);
+            textView.setVisibility(View.VISIBLE);
+        }
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                listViewState = true;
+                reserveBtn.setVisibility(View.VISIBLE);
+                hora = horas.get(position).getHora();
             }
         });
     }

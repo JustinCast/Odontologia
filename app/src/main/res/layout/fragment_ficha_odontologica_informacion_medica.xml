@@ -3,250 +3,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="layout.FichaOdontologicaInformacionMedica">
+    tools:context="odontologia.proyectoodontologia.FichaOdontologica">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
 
-        <!-- TODO: Update blank fragment layout -->
-        <LinearLayout
-            android:orientation="vertical"
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/personal_and_medical_paddin">
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/personal_and_medical_paddin">
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/titles"
+            android:text="@string/check_afirmation_question"
+            android:textColor="@color/colorPrimaryDark"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="@dimen/titles"
-                android:text="@string/check_afirmation_question"
-                android:textColor="@color/colorPrimaryDark"/>
-
-            <TextView
-                android:text="@string/check_afirmation_question_indication"
-                android:gravity="center_horizontal"
-                android:textSize="@dimen/sub_titles"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimaryDark"/>
-
-            <LinearLayout
-                android:orientation="horizontal"
+        <TextView
+            android:text="@string/check_afirmation_question_indication"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/sub_titles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:orientation="vertical">
+            <ListView android:id="@+id/lvEnfermedades"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/personal_medical_height">
-
-                <CheckBox
-                    android:text="@string/recent_physical_test"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight= "1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:id="@+id/recent_physical_test_cb"/>
-
-                <CheckBox
-                    android:text="@string/asthma"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight= "1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:id="@+id/asthma_cb" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/personal_medical_height">
-
-                <CheckBox
-                    android:text="@string/heart_diseases"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight= "1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:id="@+id/heart_diseases_cb" />
-
-                <CheckBox
-                    android:text="@string/hepatitis"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight= "1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:id="@+id/hepatitis_cb" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/personal_medical_height">
-
-                <CheckBox
-                    android:text="@string/low_blood_pressure"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight= "1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:id="@+id/low_blood_pressure_cb" />
-
-                <CheckBox
-                    android:text="@string/nephrosis"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight= "1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:id="@+id/nephrosis_cb" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/personal_medical_height">
-
-                <CheckBox
-                    android:text="@string/high_blood_pressure"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight= "1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:id="@+id/high_blood_pressure_cb" />
-
-                <CheckBox
-                    android:text="@string/rheumatic_fever"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight= "1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:id="@+id/rheumatic_fever_cb" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/personal_medical_height">
-                <CheckBox
-                    android:text="@string/circulatory_diseases"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight= "1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:id="@+id/circulatory_diseases_cb" />
-                <CheckBox
-                    android:text="@string/epilepsy"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight= "1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:id="@+id/epilepsy_cb" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/personal_medical_height">
-
-                <CheckBox
-                    android:text="@string/pain_in_anditive_region"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight= "1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:id="@+id/pain_in_anditive_region_cb" />
-
-                <CheckBox
-                    android:text="@string/venereal_diseases"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight= "1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:id="@+id/venereal_diseases_cb" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/personal_medical_height">
-
-                <CheckBox
-                    android:text="@string/excessive_bleeding"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight= "1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:id="@+id/excessive_bleeding_cb" />
-
-                <CheckBox
-                    android:text="@string/thyroid_gland_disorders"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight= "1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:id="@+id/thyroid_gland_disorders_cb" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/personal_medical_height">
-
-                <CheckBox
-                    android:text="@string/any_allergy"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight= "1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:id="@+id/any_allergy_cb" />
-
-                <CheckBox
-                    android:text="@string/allergy_antibiotics"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight= "1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:id="@+id/allergy_antibiotics_cb" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/personal_medical_height">
-
-                <CheckBox
-                    android:text="@string/bleeding_gums"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:id="@+id/bleeding_gums_cb" />
-            </LinearLayout>
-
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/btnSave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="@dimen/fab_margin"
-                android:background="?android:attr/selectableItemBackground"
-                android:src="@android:drawable/ic_menu_save" />
+                android:layout_height="wrap_content"/>
         </LinearLayout>
-    </ScrollView>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@android:drawable/ic_menu_save" />
+    </LinearLayout>
+
 </FrameLayout>
 
 

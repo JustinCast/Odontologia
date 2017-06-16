@@ -4,7 +4,7 @@ public class Enfermedad {
     private String Enfermedad, descripcion, tratamiento;
     private int idEnfermedad;
 
-    public Enfermedad(String enfermedad, String descripcion, String tratamiento, int idEnfermedad) {
+    public Enfermedad(int idEnfermedad, String enfermedad, String descripcion, String tratamiento) {
         this.Enfermedad = enfermedad;
         this.descripcion = descripcion;
         this.tratamiento = tratamiento;

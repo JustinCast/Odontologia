@@ -1,5 +1,7 @@
 package odontologia.proyectoodontologia;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,22 +13,29 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-import layout.FichaOdontologicaInformacionMedica;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,9 +58,13 @@ public class FichaOdontologica extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+
+    private static final String TAG = "OCVSample::Activity";
     private static Student student = Student.getInstance();
     private static List<Enfermedad> listaEnfermedades;
     private static ConnectionManager connectionManager = new ConnectionManager();
+
+    private String timeStamp;
 
     //ArrayList<ProductListData> arrayListProducts = new ArrayList<>();
 
@@ -59,7 +72,6 @@ public class FichaOdontologica extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ficha_odontologica);
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -74,6 +86,9 @@ public class FichaOdontologica extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+        timeStamp = new SimpleDateFormat("dd/MM/yyyy_HH:mm:ss").format(Calendar.getInstance().getTime());
+        //System.out.println(timeStamp);
+        //Toast.makeText(getBaseContext(), timeStamp,Toast.LENGTH_SHORT).show();
         //scholarship = (TextView) findViewById(R.id.scholarship_tv);
     }
 
@@ -181,126 +196,86 @@ public class FichaOdontologica extends AppCompatActivity {
                     ,civil_status, CCSS_id, birth_date, person_id, phone);
         }
 
-        /**
-         *
-         * @param recent_physical_test
-         * @param asthma
-         * @param heart_diseases
-         * @param hepatitis
-         * @param low_blood_pressure
-         * @param nephrosis
-         * @param high_blood_pressure
-         * @param rheumatic_fever
-         * @param circulatory_diseases
-         * @param epilepsy
-         * @param pain_in_anditive_region
-         * @param venereal_diseases
-         * @param excessive_bleeding
-         * @param thyroid_gland_disorders
-         * @param any_allergy
-         * @param allergy_antibiotics
-         * @param bleeding_gums
-         */
-        private void loadMedicalInformation(CheckBox recent_physical_test,CheckBox asthma,CheckBox heart_diseases, CheckBox hepatitis,
-                                            CheckBox low_blood_pressure,CheckBox nephrosis,CheckBox high_blood_pressure,
-                                            CheckBox rheumatic_fever,CheckBox circulatory_diseases,CheckBox epilepsy,
-                                            CheckBox pain_in_anditive_region, CheckBox venereal_diseases, CheckBox excessive_bleeding,
-                                            CheckBox thyroid_gland_disorders, CheckBox any_allergy, CheckBox allergy_antibiotics,
-                                            CheckBox bleeding_gums, String enfermedad)
-        {
-            if (enfermedad.equals("recent_physical_test")) {
-                recent_physical_test.setChecked(true);
+        public class EnfermedadAdapter extends ArrayAdapter<Enfermedad> {
+            private final Activity context;
+            private List<Enfermedad> enfermedadesGlobal;
+            private CheckBox checkBox;
+
+            public EnfermedadAdapter(Activity context, List<Enfermedad> enfermedadesGlobal) {
+                super(context, R.layout.row_simple, enfermedadesGlobal);
+                this.context = context;
+                this.enfermedadesGlobal = enfermedadesGlobal;
             }
-            else if (enfermedad.equals("asthma")) {
-                asthma.setChecked(true);
-            }
-            else if (enfermedad.equals("heart_diseases")) {
-                heart_diseases.setChecked(true);
-            }
-            else if (enfermedad.equals("hepatitis")) {
-                hepatitis.setChecked(true);
-            }
-            else if (enfermedad.equals("low_blood_pressure")) {
-                low_blood_pressure.setChecked(true);
-            }
-            else if (enfermedad.equals("nephrosis")) {
-                nephrosis.setChecked(true);
-            }
-            else if (enfermedad.equals("high_blood_pressure")) {
-                high_blood_pressure.setChecked(true);
-            }
-            else if (enfermedad.equals("rheumatic_fever")) {
-                rheumatic_fever.setChecked(true);
-            }
-            else if (enfermedad.equals("circulatory_diseases")) {
-                circulatory_diseases.setChecked(true);
-            }
-            else if (enfermedad.equals("Jajaj")) {
-                epilepsy.setChecked(true);
-            }
-            else if (enfermedad.equals("pain_in_anditive_region")) {
-                pain_in_anditive_region.setChecked(true);
-            }
-            else if (enfermedad.equals("venereal_diseases")) {
-                venereal_diseases.setChecked(true);
-            }
-            else if (enfermedad.equals("excessive_bleeding")) {
-                excessive_bleeding.setChecked(true);
-            }
-            else if (enfermedad.equals("thyroid_gland_disorders")) {
-                thyroid_gland_disorders.setChecked(true);
-            }
-            else if (enfermedad.equals("any_allergy")) {
-                any_allergy.setChecked(true);
-            }
-            else if (enfermedad.equals("allergy_antibiotics")) {
-                allergy_antibiotics.setChecked(true);
-            }
-            else if (enfermedad.equals("bleeding_gums")) {
-                bleeding_gums.setChecked(true);
+
+            public View getView(int position, View view, ViewGroup parent) {
+                LayoutInflater inflater = context.getLayoutInflater();
+                View rowView = inflater.inflate(R.layout.row_simple, null, true);
+                checkBox = (CheckBox) rowView.findViewById(R.id.boxSimple);
+                checkBox.setText(enfermedadesGlobal.get(position).getEnfermedad());
+                final Enfermedad enfermedad = enfermedadesGlobal.get(position);
+                for (int j=0; j < listaEnfermedades.size(); j++) {
+                    if (enfermedadesGlobal.get(position).getEnfermedad().equals(listaEnfermedades.get(j).getEnfermedad())) {
+                        checkBox.setChecked(true);
+                        break;
+                    }
+                }
+                checkBox.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        /*Call<Enfermedad> call = connectionManager.getMainInterface().setuserDisease(enfermedad,student.getCarne(),timeStamp);
+                        call.enqueue(new Callback<Enfermedad>() {
+                            @Override
+                            public void onResponse(Call<Enfermedad> call, Response<Enfermedad> response) {
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<Enfermedad> call, Throwable t) {
+
+                            }
+                        });*/
+
+                    }
+                });
+                return rowView;
             }
         }
 
-        private void getAllIdsMedical(View rootView, String enfermedad) {
-            final CheckBox recent_physical_test = (CheckBox) rootView.findViewById(R.id.recent_physical_test_cb);
-            final CheckBox asthma = (CheckBox) rootView.findViewById(R.id.asthma_cb);
-            final CheckBox heart_diseases = (CheckBox) rootView.findViewById(R.id.heart_diseases_cb);
-            final CheckBox hepatitis = (CheckBox) rootView.findViewById(R.id.hepatitis_cb);
-            final CheckBox low_blood_pressure = (CheckBox) rootView.findViewById(R.id.low_blood_pressure_cb);
-            final CheckBox nephrosis = (CheckBox) rootView.findViewById(R.id.nephrosis_cb);
-            final CheckBox high_blood_pressure = (CheckBox) rootView.findViewById(R.id.high_blood_pressure_cb);
-            final CheckBox rheumatic_fever = (CheckBox) rootView.findViewById(R.id.rheumatic_fever_cb);
-            final CheckBox circulatory_diseases = (CheckBox) rootView.findViewById(R.id.circulatory_diseases_cb);
-            final CheckBox epilepsy = (CheckBox) rootView.findViewById(R.id.epilepsy_cb);
-            final CheckBox pain_in_anditive_region = (CheckBox) rootView.findViewById(R.id.pain_in_anditive_region_cb);
-            final CheckBox venereal_diseases = (CheckBox) rootView.findViewById(R.id.venereal_diseases_cb);
-            final CheckBox excessive_bleeding = (CheckBox) rootView.findViewById(R.id.excessive_bleeding_cb);
-            final CheckBox thyroid_gland_disorders = (CheckBox) rootView.findViewById(R.id.thyroid_gland_disorders_cb);
-            final CheckBox any_allergy = (CheckBox) rootView.findViewById(R.id.any_allergy_cb);
-            final CheckBox allergy_antibiotics = (CheckBox) rootView.findViewById(R.id.allergy_antibiotics_cb);
-            final CheckBox bleeding_gums = (CheckBox) rootView.findViewById(R.id.bleeding_gums_cb);
-
-            loadMedicalInformation(recent_physical_test, asthma, heart_diseases,  hepatitis, low_blood_pressure, nephrosis,
-                    high_blood_pressure, rheumatic_fever, circulatory_diseases, epilepsy, pain_in_anditive_region,
-                    venereal_diseases,  excessive_bleeding, thyroid_gland_disorders,  any_allergy, allergy_antibiotics, bleeding_gums, enfermedad);
+        private void cargarLista(View rootView, List<Enfermedad> model) {
+            ListView lvDatos = (ListView) rootView.findViewById(R.id.lvEnfermedades);
+            EnfermedadAdapter adapter= new EnfermedadAdapter(getActivity(),model);
+            lvDatos.setAdapter(adapter);
         }
-
+        private void userDiseases(List<Enfermedad> enfermedades) {
+            listaEnfermedades = enfermedades;
+            Log.e(TAG, enfermedades.toString());
+        }
         private void getAllMedicalInformation(final View rootView) {
-
-            Call<List<Enfermedad>> call = connectionManager.getMainInterface().getStudentMedicalInformation(student.getCarne());
+            Call<List<Enfermedad>> call = connectionManager.getMainInterface().getuserDiseases(student.getCarne());
             call.enqueue(new Callback<List<Enfermedad>>() {
                 @Override
                 public void onResponse(Call<List<Enfermedad>> call, Response<List<Enfermedad>> response) {
-                    listaEnfermedades = response.body();
-                    for (int i = 0; i < listaEnfermedades.size(); i++)
-                    {
-                        String a = listaEnfermedades.get(i).getEnfermedad();
-                        getAllIdsMedical(rootView, a);
-                    }
+                    userDiseases(response.body());
                 }
 
                 @Override
                 public void onFailure(Call<List<Enfermedad>> call, Throwable t) {
+                    Snackbar.make(getActivity().getCurrentFocus(), R.string.connectingError, Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            });
+            call = connectionManager.getMainInterface().getAllDiseases();
+            call.enqueue(new Callback<List<Enfermedad>>() {
+                @Override
+                public void onResponse(Call<List<Enfermedad>> call, Response<List<Enfermedad>> response) {
+                    cargarLista(rootView, response.body());
+                }
+
+                @Override
+                public void onFailure(Call<List<Enfermedad>> call, Throwable t) {
+                    Snackbar.make(getActivity().getCurrentFocus(), R.string.connectingError, Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
                 }
             });
 
@@ -311,8 +286,8 @@ public class FichaOdontologica extends AppCompatActivity {
                                  Bundle savedInstanceState)
         {
             View rootView;
-
             if (getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
+
                 rootView = inflater.inflate(R.layout.fragment_ficha_odontologica_informacion_personal, container, false);
                 getAllIdsPersonalInformation(rootView);
             }
@@ -323,7 +298,6 @@ public class FichaOdontologica extends AppCompatActivity {
                 btnAgregarMedicamento.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
                     }
                 });
             }

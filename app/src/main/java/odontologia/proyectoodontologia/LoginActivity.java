@@ -111,8 +111,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
              * */
             @Override
             public void onClick(final View view) {
-                startActivity(MainActivityIntent);
-                /*Call<estudiante> call = connectionManager.getMainInterface().getStudent(carnetTextView.getText().toString(),
+                //startActivity(MainActivityIntent);
+                Call<estudiante> call = connectionManager.getMainInterface().getStudent(carnetTextView.getText().toString(),
                         Integer.parseInt(mPasswordView.getText().toString()));
                 call.enqueue(new Callback<odontologia.proyectoodontologia.estudiante>() {
                     @Override
@@ -122,22 +122,20 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 response.body().getNombre(), response.body().getApe1(), response.body().getApe2(),
                                 response.body().getCarrera(), response.body().getEstadoCivil(), response.body().getCarneCCSS(),
                                 response.body().getFechaNacimiento(), response.body().getCedula(), response.body().getTelefono());
-                        Toast.makeText(LoginActivity.this, "Bienvenido " + student.getNombre(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Bienvenido: " + response.body().getNombre(), Toast.LENGTH_SHORT).show();
                         startActivity(MainActivityIntent);
                     }
 
                     @Override
                     public void onFailure(Call<estudiante> call, Throwable t) {
-                        Toast.makeText(LoginActivity.this, "Error de inicio de sesión", Toast.LENGTH_SHORT).show();
-                        Snackbar.make(view, "Fallo: ", Snackbar.LENGTH_LONG)
+                        Snackbar.make(view, "Error de conexión, intentelo mas tarde. ", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     }
-                });*/
+                });
             }
         });
 
         mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
     }
 
     private void populateAutoComplete() {

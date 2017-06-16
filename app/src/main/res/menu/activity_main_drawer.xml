@@ -9,11 +9,11 @@
                     android:id="@+id/nav_appointments"
                     android:icon="@drawable/ic_citas"
                     android:title="@string/appointments" />
-                <item
-                    android:id="@+id/nav_odontological_sheet"
-                    android:icon="@drawable/ic_ficha_odontologica"
-                    android:title="@string/dental_tab" />
             </group>
+            <item
+                android:id="@+id/nav_odontological_sheet"
+                android:icon="@drawable/ic_ficha_odontologica"
+                android:title="@string/dental_tab" />
         </menu>
     </item>
 
